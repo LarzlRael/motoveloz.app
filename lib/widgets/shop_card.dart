@@ -17,7 +17,7 @@ class ShopCard extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              _launchURL(shopModel.goToUrl);
+              launchURL(shopModel.goToUrl);
             },
             child: Card(
               semanticContainer: true,
@@ -50,13 +50,5 @@ class ShopCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  void _launchURL(String url) async {
-    if (await canLaunchUrlString(url)) {
-      await launchUrlString(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }

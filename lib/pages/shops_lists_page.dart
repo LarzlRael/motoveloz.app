@@ -9,10 +9,13 @@ class ShopsListsPage extends StatelessWidget {
       body: PageContainer(
         child: Column(
           children: [
-            TitlesSeparator(
+            SearchBox(),
+            const TitlesSeparator(
                 title: 'Volver a escuchar', moreText: 'MÁS', fontSize: 23),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Expanded(
+              /* remove shadow */
+
               child: GridView.count(
                 primary: false,
                 /* padding: const EdgeInsets.all(20), */

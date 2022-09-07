@@ -11,7 +11,7 @@ final List<ShopModel> shopData = [
   ),
   ShopModel(
     imageAsset: 'assets/shops/dona_milanesa_cielo_mall.png',
-    shopName: 'dona milanesa cielo mall',
+    shopName: 'doña milanesa cielo mall',
     shopDescription: 'Shop Description',
     shopAddress: 'Shop Address',
     shopPhone: 'Shop Phone',
@@ -19,7 +19,7 @@ final List<ShopModel> shopData = [
   ),
   ShopModel(
     imageAsset: 'assets/shops/dona_milanesa_nulticinel.png',
-    shopName: 'dona milanesa nulticinel',
+    shopName: 'doña milanesa multicine',
     shopDescription: 'Shop Description',
     shopAddress: 'Shop Address',
     shopPhone: 'Shop Phone',
@@ -35,8 +35,8 @@ final List<ShopModel> shopData = [
   ),
   ShopModel(
     imageAsset: 'assets/shops/pollos_yacks.png',
-    shopName: 'michelline',
-    shopDescription: 'pollos yacks',
+    shopName: 'pollos yacks',
+    shopDescription: 'pollos yack' 's',
     shopAddress: 'Shop Address',
     shopPhone: 'Shop Phone',
     goToUrl: 'https://la-vaca-cielo-mall.ola.click/',
@@ -51,7 +51,7 @@ final List<ShopModel> shopData = [
   ),
   ShopModel(
     imageAsset: 'assets/shops/snack_iglu_cielo.png',
-    shopName: 'snack iglu cielol',
+    shopName: 'snack iglu cielo',
     shopDescription: 'pollos yacks',
     shopAddress: 'Shop Address',
     shopPhone: 'Shop Phone',
@@ -67,7 +67,7 @@ final List<ShopModel> shopData = [
   ),
   ShopModel(
     imageAsset: 'assets/shops/tobi_cielo_mall.png',
-    shopName: 'tobi cielo mall',
+    shopName: 'toby cielo mall',
     shopDescription: 'pollos yacks',
     shopAddress: 'Shop Address',
     shopPhone: 'Shop Phone',
@@ -75,7 +75,7 @@ final List<ShopModel> shopData = [
   ),
   ShopModel(
     imageAsset: 'assets/shops/tobi_cinebol.png',
-    shopName: 'tobi cinebol',
+    shopName: 'toby cinebol',
     shopDescription: 'pollos yacks',
     shopAddress: 'Shop Address',
     shopPhone: 'Shop Phone',
@@ -122,3 +122,8 @@ final List<ShopModel> shopData = [
     goToUrl: 'https://la-vaca-cielo-mall.ola.click/',
   ),
 ];
+
+List<ShopModel> sortedShopByName() {
+  return shopData.map((shop) => shop).toList()
+    ..sort((a, b) => a.shopName.compareTo(b.shopName));
+}
