@@ -9,7 +9,20 @@ class ShopsListsPage extends StatelessWidget {
       body: PageContainer(
         child: Column(
           children: [
-            TitlesSeparator(title: 'Volver a escuchar', moreText: 'MÁS'),
+            TitlesSeparator(
+                title: 'Volver a escuchar', moreText: 'MÁS', fontSize: 23),
+            SizedBox(height: 10),
+            Expanded(
+              child: GridView.count(
+                primary: false,
+                /* padding: const EdgeInsets.all(20), */
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                crossAxisCount: 2,
+                children: shopData.map((e) => ShopCard(shopModel: e)).toList(),
+              ),
+            ),
+            /*  TitlesSeparator(title: 'Volver a escuchar', moreText: 'MÁS'),
             Expanded(
               child: GridView.count(
                 primary: false,
@@ -21,12 +34,9 @@ class ShopsListsPage extends StatelessWidget {
                   ShopCard(),
                   ShopCard(),
                   ShopCard(),
-                  ShopCard(),
                 ],
               ),
-            ),
-            TitlesSeparator(title: 'Mixes para ti', moreText: 'MÁS'),
-            ShopCard(),
+            ), */
           ],
         ),
       ),
@@ -37,10 +47,12 @@ class ShopsListsPage extends StatelessWidget {
 class TitlesSeparator extends StatelessWidget {
   final String title;
   final String moreText;
+  final double fontSize;
   const TitlesSeparator({
     Key? key,
     required this.title,
     required this.moreText,
+    this.fontSize = 20,
   }) : super(key: key);
 
   @override
@@ -51,11 +63,11 @@ class TitlesSeparator extends StatelessWidget {
         SimpleText(
           text: title,
           fontWeight: FontWeight.bold,
-          fontSize: 18,
+          fontSize: fontSize,
         ),
         SimpleText(
           text: moreText,
-          fontSize: 15,
+          fontSize: fontSize - 6,
         ),
       ],
     );

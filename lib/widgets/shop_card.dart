@@ -1,32 +1,62 @@
 part of 'widgets.dart';
 
 class ShopCard extends StatelessWidget {
-  const ShopCard({super.key});
+  final ShopModel shopModel;
+  const ShopCard({
+    super.key,
+    required this.shopModel,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      semanticContainer: true,
-      clipBehavior: Clip.antiAliasWithSaveLayer,
+    final size = MediaQuery.of(context).size;
+    return Container(
+      /* color: Colors.blue, */
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(
-            'https://placeimg.com/640/480/any',
-            fit: BoxFit.fill,
+          GestureDetector(
+            onTap: () {
+              _launchURL(shopModel.goToUrl);
+            },
+            child: Card(
+              semanticContainer: true,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              elevation: 5,
+              child: Column(
+                children: [
+                  Image.asset(
+                    height: size.height * 0.15,
+                    width: double.infinity,
+                    shopModel.imageAsset,
+                    fit: BoxFit.fill,
+                  ),
+                ],
+              ),
+              /* margin: const EdgeInsets.symmetric(vertical: 10), */
+            ),
           ),
           SimpleText(
-            text: 'Shop Name',
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-            marginVertical: 10,
+            marginVertical: 5,
+            text: shopModel.shopName.toUpperCase(),
+            fontWeight: FontWeight.w700,
+            fontSize: 14,
+
+            /* marginVertical: 5, */
           ),
         ],
       ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      elevation: 5,
-      margin: const EdgeInsets.symmetric(vertical: 10),
     );
+  }
+
+  void _launchURL(String url) async {
+    if (await canLaunchUrlString(url)) {
+      await canLaunchUrlString(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
