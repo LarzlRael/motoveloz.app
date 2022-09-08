@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shops_business/routes/routes.dart';
+import 'package:WaraShops/routes/routes.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

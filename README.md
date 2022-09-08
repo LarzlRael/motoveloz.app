@@ -1,4 +1,4 @@
-# shops_business
+# WaraShops
 
 A new Flutter project.
 

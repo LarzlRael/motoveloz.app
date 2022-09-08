@@ -1,4 +1,4 @@
-package com.example.shops_business
+package com.neo.WaraShops
 
 import io.flutter.embedding.android.FlutterActivity
 

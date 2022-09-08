@@ -1,6 +1,6 @@
 <manifest
   xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.example.shops_business"
+  package="com.neo.WaraShops"
 >
     <queries>
         <!-- If your app opens https URLs -->

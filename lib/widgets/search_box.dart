@@ -14,7 +14,7 @@ class SearchBox extends StatelessWidget {
         ),
         child: GestureDetector(
           onTap: () {
-            showSearch(context: context, delegate: SearchShop());
+            showSearch(context: context, delegate: SearchShopStoreDelegate());
           },
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
