@@ -23,8 +23,8 @@ class HistoryBloc {
     _scansController.sink.add(await DBProvider.db.getAllScans());
   }
 
-  deleteHistory(int id) async {
-    await DBProvider.db.deleteScan(id);
+  deleteHistoryById(int id) async {
+    await DBProvider.db.deleteHistoryById(id);
     getAllHistory();
   }
 

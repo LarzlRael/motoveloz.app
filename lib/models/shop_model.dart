@@ -1,6 +1,7 @@
 part of 'models.dart';
 
 class ShopModel {
+  int? id;
   String imageAsset;
   String shopName;
   String shopDescription;
@@ -14,5 +15,6 @@ class ShopModel {
     required this.shopAddress,
     required this.shopPhone,
     required this.goToUrl,
+    this.id,
   });
 }

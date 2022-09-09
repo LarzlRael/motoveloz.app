@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:WaraShops/data/constats.dart';
+import 'package:WaraShops/data/constants.dart';
 import 'package:WaraShops/models/models.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
@@ -68,7 +68,8 @@ class DBProvider {
 
   Future<List<HistoryModel>> getHistoryByCondition(String condition) async {
     final db = await database;
-    final res = await db.rawQuery("SELECT * FROM $tableHistory ");
+    final res = await db
+        .rawQuery("SELECT * FROM $tableHistory ORDER BY id ASC LIMIT 15");
 
     List<HistoryModel> list =
         res.isNotEmpty ? res.map((c) => HistoryModel.fromJson(c)).toList() : [];
@@ -83,7 +84,7 @@ class DBProvider {
     return res;
   } */
 
-  Future<int> deleteScan(int id) async {
+  Future<int> deleteHistoryById(int id) async {
     final db = await database;
     final res =
         await db.delete('$tableHistory', where: 'id = ?', whereArgs: [id]);

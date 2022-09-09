@@ -69,9 +69,14 @@ class SearchShopStoreDelegate extends SearchDelegate {
 
   ListView listViewBlocHistory(List<HistoryModel> suggestionList) {
     final pinterHistory = suggestionList
-        .map((e) => shopData
-            .firstWhere(((shopData) => shopData.shopName == (e.querySearched))))
+        .map((e) => shopData.firstWhere(((shopData) {
+              if (shopData.shopName == (e.querySearched)) {
+                shopData.id = e.id;
+              }
+              return shopData.shopName == (e.querySearched);
+            })))
         .toList();
+
     return ListView.builder(
       itemCount: pinterHistory.length,
       itemBuilder: (context, i) {
@@ -92,7 +97,16 @@ class SearchShopStoreDelegate extends SearchDelegate {
                 width: sizeImage, height: sizeImage),
           ),
           title: Text(suggestionItem.shopName.toTitleCase()),
-          onLongPress: () => showAlertDialog(context),
+          onLongPress: () => showAlertDialog(
+                  context,
+                  "Eliminar de historial",
+                  SimpleText(
+                      text:
+                          "¿Desea eliminar ${suggestionItem.shopName.toTitleCase()} de su historial?"),
+                  () async {
+                await historyBloc.deleteHistoryById(suggestionItem.id!);
+                historyBloc.getAllHistory();
+              }),
           onTap: () => launchURL(suggestionItem.goToUrl));
     }
     return ListTile(
