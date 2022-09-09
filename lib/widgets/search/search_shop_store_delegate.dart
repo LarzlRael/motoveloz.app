@@ -47,7 +47,14 @@ class SearchShopStoreDelegate extends SearchDelegate {
           .where((element) =>
               element.shopName.toLowerCase().startsWith(query.toLowerCase()))
           .toList();
-      return listViewItems(suggestionList);
+      return suggestionList.isEmpty
+          ? NoResults(
+              icon: Icons.search_off,
+              message: 'No hay resultados para $query',
+              showButton: false,
+              iconButton: Icons.search_off,
+            )
+          : listViewItems(suggestionList);
     }
   }
 
@@ -78,20 +85,15 @@ class SearchShopStoreDelegate extends SearchDelegate {
     final double sizeImage = 40;
     if (!registerHistory) {
       return ListTile(
-        leading: const Icon(Icons.history),
-        trailing: ClipRRect(
-          borderRadius: BorderRadius.circular(5),
-          child: Image.asset(suggestionItem.imageAsset,
-              width: sizeImage, height: sizeImage),
-        ),
-        title: Text(suggestionItem.shopName.toTitleCase()),
-        onLongPress: () => showAlertDialog(context),
-        onTap: () {
-          launchURL(suggestionItem.goToUrl);
-          historyBloc
-              .newHistory(HistoryModel(querySearched: suggestionItem.shopName));
-        },
-      );
+          leading: const Icon(Icons.history),
+          trailing: ClipRRect(
+            borderRadius: BorderRadius.circular(5),
+            child: Image.asset(suggestionItem.imageAsset,
+                width: sizeImage, height: sizeImage),
+          ),
+          title: Text(suggestionItem.shopName.toTitleCase()),
+          onLongPress: () => showAlertDialog(context),
+          onTap: () => launchURL(suggestionItem.goToUrl));
     }
     return ListTile(
       leading: ClipRRect(

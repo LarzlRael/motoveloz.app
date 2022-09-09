@@ -10,8 +10,8 @@ class ShopsListsPage extends StatelessWidget {
         child: Column(
           children: [
             SearchBox(),
-            const TitlesSeparator(
-                title: 'Volver a escuchar', moreText: 'MÁS', fontSize: 23),
+            /* const TitlesSeparator(
+                title: 'Volver a escuchar', moreText: 'MÁS', fontSize: 23), */
             const SizedBox(height: 10),
             Expanded(
               /* remove shadow */

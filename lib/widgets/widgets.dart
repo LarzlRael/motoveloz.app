@@ -14,3 +14,6 @@ part 'shop_card.dart';
 part 'page_container.dart';
 part 'search_box.dart';
 part 'search/search_shop_store_delegate.dart';
+part 'no_results.dart';
+
+part 'buttons/button_with_icon.dart';
