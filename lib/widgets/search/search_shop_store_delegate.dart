@@ -45,12 +45,12 @@ class SearchShopStoreDelegate extends SearchDelegate {
     } else {
       final suggestionList = shopData
           .where((element) =>
-              element.shopName.toLowerCase().startsWith(query.toLowerCase()))
+              element.shopName.toLowerCase().contains(query.toLowerCase()))
           .toList();
       return suggestionList.isEmpty
           ? NoResults(
               icon: Icons.search_off,
-              message: 'No hay resultados para $query',
+              message: 'No hay resultados para "$query"',
               showButton: false,
               iconButton: Icons.search_off,
             )
