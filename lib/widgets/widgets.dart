@@ -1,6 +1,5 @@
 import 'package:WaraShops/dialogs/confirm_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
 import 'package:WaraShops/bloc/history_bloc.dart';
 import 'package:WaraShops/data/shop_data.dart';
 import 'package:WaraShops/data/sql_lite_provider.dart';
