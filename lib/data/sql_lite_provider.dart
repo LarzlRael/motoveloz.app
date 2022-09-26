@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:WaraShops/data/constants.dart';
-import 'package:WaraShops/models/models.dart';
+import 'package:WaraClick/data/constants.dart';
+import 'package:WaraClick/models/models.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as Path;

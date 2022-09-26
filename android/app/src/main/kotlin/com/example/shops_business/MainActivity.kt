@@ -1,4 +1,4 @@
-package com.neo.WaraShops
+package com.neo.WaraClick
 
 import io.flutter.embedding.android.FlutterActivity
 

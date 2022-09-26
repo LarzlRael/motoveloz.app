@@ -1,6 +1,6 @@
 <manifest
   xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.neo.WaraShops"
+  package="com.neo.WaraClick"
 >
   <uses-permission android:name="android.permission.INTERNET" />
     <queries>
@@ -22,7 +22,7 @@
       </queries>
 
    <application
-    android:label="WaraShops"
+    android:label="WaraClick"
     android:name="${applicationName}"
     android:icon="@mipmap/launcher_icon"
   >

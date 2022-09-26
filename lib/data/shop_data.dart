@@ -1,4 +1,4 @@
-import 'package:WaraShops/models/models.dart';
+import 'package:WaraClick/models/models.dart';
 
 final List<ShopModel> shopData = [
   ShopModel(

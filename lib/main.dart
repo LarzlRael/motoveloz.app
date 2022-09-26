@@ -1,6 +1,6 @@
-import 'package:WaraShops/utils/utils.dart';
+import 'package:WaraClick/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:WaraShops/routes/routes.dart';
+import 'package:WaraClick/routes/routes.dart';
 import 'package:provider/provider.dart';
 
 void main() async {

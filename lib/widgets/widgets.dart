@@ -1,7 +1,7 @@
-import 'package:WaraShops/dialogs/confirm_dialog.dart';
-import 'package:WaraShops/utils/utils.dart';
-import 'package:WaraShops/bloc/history_bloc.dart';
-import 'package:WaraShops/data/shop_data.dart';
+import 'package:WaraClick/dialogs/confirm_dialog.dart';
+import 'package:WaraClick/utils/utils.dart';
+import 'package:WaraClick/bloc/history_bloc.dart';
+import 'package:WaraClick/data/shop_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

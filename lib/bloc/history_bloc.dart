@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:WaraShops/data/sql_lite_provider.dart';
-import 'package:WaraShops/models/models.dart';
+import 'package:WaraClick/data/sql_lite_provider.dart';
+import 'package:WaraClick/models/models.dart';
 
 class HistoryBloc {
   static final HistoryBloc _singleton = new HistoryBloc._internal();
