@@ -5,12 +5,29 @@ class ShopsListsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkTheme =
+        Provider.of<ThemeChanger>(context, listen: true).isDarkTheme;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: AppBarTitle(
+          fontSize: 20,
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.pushNamed(context, 'settings_page');
+            },
+          ),
+        ],
+      ),
       body: PageContainer(
         paddingVertical: 10,
         child: Column(
           children: [
-            SearchBox(),
+            SearchBox(isDarkTheme: isDarkTheme),
             /* const TitlesSeparator(
                 title: 'Volver a escuchar', moreText: 'MÁS', fontSize: 23), */
             const SizedBox(height: 10),

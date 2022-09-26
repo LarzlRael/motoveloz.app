@@ -1,11 +1,9 @@
 import 'package:WaraShops/dialogs/confirm_dialog.dart';
-import 'package:flutter/material.dart';
+import 'package:WaraShops/utils/utils.dart';
 import 'package:WaraShops/bloc/history_bloc.dart';
 import 'package:WaraShops/data/shop_data.dart';
-import 'package:WaraShops/data/sql_lite_provider.dart';
-import 'package:WaraShops/utils/utils_launcher.dart';
-import 'package:WaraShops/utils/utils_strings.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/models.dart';
 part 'simple_text.dart';
@@ -16,3 +14,5 @@ part 'search/search_shop_store_delegate.dart';
 part 'no_results.dart';
 
 part 'buttons/button_with_icon.dart';
+part 'generic_list_title.dart';
+part 'app_bar_title.dart';

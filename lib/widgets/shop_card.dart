@@ -40,9 +40,10 @@ class ShopCard extends StatelessWidget {
             ),
           ),
           SimpleText(
-            marginVertical: 5,
+            left: 5,
             text: shopModel.shopName.toUpperCase(),
             fontWeight: FontWeight.w700,
+            lightThemeColor: Colors.black87,
             fontSize: 14,
 
             /* marginVertical: 5, */

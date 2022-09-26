@@ -1,8 +1,11 @@
 part of 'widgets.dart';
 
 class SearchBox extends StatelessWidget {
-  const SearchBox({super.key});
-
+  const SearchBox({
+    super.key,
+    required this.isDarkTheme,
+  });
+  final bool isDarkTheme;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -20,11 +23,13 @@ class SearchBox extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.black54,
+              color: isDarkTheme ? Colors.black54 : Colors.grey[200],
               borderRadius: BorderRadius.circular(100),
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
-                    color: Colors.black12, blurRadius: 5, offset: Offset(0, 5))
+                    color: isDarkTheme ? Colors.black12 : Colors.white12,
+                    blurRadius: 5,
+                    offset: Offset(0, 5))
               ],
             ),
             child: Row(
@@ -32,13 +37,14 @@ class SearchBox extends StatelessWidget {
               children: [
                 const SimpleText(
                   text: 'Buscar...',
-                  style: TextStyle(color: Colors.white70),
-                  fontSize: 22,
+                  lightThemeColor: Colors.black54,
+                  darkThemeColor: Colors.white54,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
                 Icon(
                   Icons.search,
-                  color: Colors.white70,
+                  /* color: Colors.white70, */
                 )
               ],
             ),

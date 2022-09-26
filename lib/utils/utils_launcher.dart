@@ -1,9 +1,11 @@
 part of 'utils.dart';
 
 void launchURL(String url) async {
-  if (await canLaunchUrlString(url)) {
-    await launchUrlString(url);
-  } else {
+  final Uri toLaunch = Uri.parse(url);
+  if (!await launchUrl(
+    toLaunch,
+    /* mode: LaunchMode.externalApplication, */
+  )) {
     throw 'Could not launch $url';
   }
 }
