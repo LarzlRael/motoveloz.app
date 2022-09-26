@@ -6,3 +6,4 @@ part 'utils_launcher.dart';
 part 'shared_preferences.dart';
 part 'theme_changer.dart';
 part 'utils_strings.dart';
+part 'data_app.dart';

@@ -16,7 +16,10 @@ class ShopsListsPage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.settings),
+            icon: Icon(Icons.settings,
+                color: isDarkTheme
+                    ? Colors.white
+                    : Theme.of(context).primaryColor),
             onPressed: () {
               Navigator.pushNamed(context, 'settings_page');
             },
@@ -33,7 +36,6 @@ class ShopsListsPage extends StatelessWidget {
             const SizedBox(height: 10),
             Expanded(
               /* remove shadow */
-
               child: GridView.count(
                 primary: false,
                 /* padding: const EdgeInsets.all(20), */
@@ -44,19 +46,7 @@ class ShopsListsPage extends StatelessWidget {
               ),
             ),
             /*  TitlesSeparator(title: 'Volver a escuchar', moreText: 'MÁS'),
-            Expanded(
-              child: GridView.count(
-                primary: false,
-                /* padding: const EdgeInsets.all(20), */
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                crossAxisCount: 2,
-                children: <Widget>[
-                  ShopCard(),
-                  ShopCard(),
-                  ShopCard(),
-                ],
-              ),
+            
             ), */
           ],
         ),

@@ -10,15 +10,18 @@ class AppBarTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Image.asset(
-          'assets/wara_shop_icon.png',
-          height: 35,
+        ClipRRect(
+          borderRadius: BorderRadius.circular(5.0),
+          child: Image.asset(
+            iconPath,
+            height: 35,
+          ),
         ),
         SimpleText(
           left: 10,
-          text: 'WaraClick',
+          text: appName,
           /* color: Colors.black, */
           fontSize: fontSize,
           fontWeight: FontWeight.bold,

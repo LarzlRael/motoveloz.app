@@ -16,3 +16,4 @@ part 'no_results.dart';
 part 'buttons/button_with_icon.dart';
 part 'generic_list_title.dart';
 part 'app_bar_title.dart';
+part 'app_bar_with_back_icon.dart';

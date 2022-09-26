@@ -1,7 +1,7 @@
-import 'package:WaraClick/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:WaraClick/routes/routes.dart';
 import 'package:provider/provider.dart';
+import 'package:WaraClick/utils/utils.dart';
+import 'package:WaraClick/routes/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
