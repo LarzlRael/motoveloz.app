@@ -17,7 +17,8 @@ class ShopCard extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              launchURL(shopModel.goToUrl);
+              /* launchURL(shopModel.goToUrl); */
+              openBrowserTab(shopModel.goToUrl);
             },
             child: Card(
               semanticContainer: true,

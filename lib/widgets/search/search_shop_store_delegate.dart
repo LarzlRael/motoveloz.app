@@ -107,7 +107,7 @@ class SearchShopStoreDelegate extends SearchDelegate {
                 await historyBloc.deleteHistoryById(suggestionItem.id!);
                 historyBloc.getAllHistory();
               }),
-          onTap: () => launchURL(suggestionItem.goToUrl));
+          onTap: () => openBrowserTab(suggestionItem.goToUrl));
     }
     return ListTile(
       leading: ClipRRect(
@@ -117,7 +117,7 @@ class SearchShopStoreDelegate extends SearchDelegate {
       ),
       title: Text(suggestionItem.shopName.toTitleCase()),
       onTap: () {
-        launchURL(suggestionItem.goToUrl);
+        openBrowserTab(suggestionItem.goToUrl);
         if (registerHistory) {
           historyBloc
               .newHistory(HistoryModel(querySearched: suggestionItem.shopName));
