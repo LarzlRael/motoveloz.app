@@ -31,16 +31,15 @@ class SearchShopStoreDelegate extends SearchDelegate {
     historyBloc.getAllHistory();
 
     if (query.isEmpty) {
-      return StreamBuilder(
+      return StreamDataWidget<List<HistoryModel>>(
         stream: historyBloc.scansStream,
-        builder:
-            (BuildContext context, AsyncSnapshot<List<HistoryModel>> snapshot) {
-          if (snapshot.hasData) {
-            return listViewBlocHistory(snapshot.data!);
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
+        builder: (data) => listViewBlocHistory(data),
+        noResultsWidget: NoResults(
+          icon: Icons.history,
+          message: 'No hay historial de busquedas',
+          showButton: false,
+          iconButton: Icons.search_off,
+        ),
       );
     } else {
       final suggestionList = shopData

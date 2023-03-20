@@ -7,7 +7,8 @@ class ShopsListsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageContainer(
-        paddingVertical: 10,
+        paddingVertical: 0,
+        paddingHorizontal: 8,
         child: Column(
           children: [
             SearchBox(),

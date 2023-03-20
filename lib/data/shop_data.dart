@@ -169,46 +169,6 @@ final List<ShopModel> shopData = [
     shopPhone: 'no-phone',
     goToUrl: 'https://waikichas-jungla.ola.click/',
   ),
-  ShopModel(
-    imageAsset: 'assets/shops/waikichas.png',
-    shopName: 'waikichas jungla',
-    shopDescription: 'pollos yacks',
-    shopAddress: 'Shop Address',
-    shopPhone: 'no-phone',
-    goToUrl: 'https://waikichas-jungla.ola.click/',
-  ),
-  ShopModel(
-    imageAsset: 'assets/shops/waikichas.png',
-    shopName: 'waikichas jungla',
-    shopDescription: 'pollos yacks',
-    shopAddress: 'Shop Address',
-    shopPhone: 'no-phone',
-    goToUrl: 'https://waikichas-jungla.ola.click/',
-  ),
-  ShopModel(
-    imageAsset: 'assets/shops/waikichas.png',
-    shopName: 'waikichas jungla',
-    shopDescription: 'pollos yacks',
-    shopAddress: 'Shop Address',
-    shopPhone: 'no-phone',
-    goToUrl: 'https://waikichas-jungla.ola.click/',
-  ),
-  ShopModel(
-    imageAsset: 'assets/shops/waikichas.png',
-    shopName: 'waikichas jungla',
-    shopDescription: 'pollos yacks',
-    shopAddress: 'Shop Address',
-    shopPhone: 'no-phone',
-    goToUrl: 'https://waikichas-jungla.ola.click/',
-  ),
-  ShopModel(
-    imageAsset: 'assets/shops/favorites_singers.png',
-    shopName: 'pollos loco',
-    shopDescription: 'pollos yacks',
-    shopAddress: 'Shop Address',
-    shopPhone: 'no-phone',
-    goToUrl: 'https://waikichas-jungla.ola.click/',
-  ),
 ];
 
 List<ShopModel> sortedShopByName() {

@@ -18,7 +18,16 @@ class ShopCard extends StatelessWidget {
           GestureDetector(
             onTap: () {
               /* launchURL(shopModel.goToUrl); */
-              openBrowserTab(shopModel.goToUrl);
+              /* openBrowserTab(shopModel.goToUrl); */
+              Navigator.pushNamed(
+                context,
+                'go_url',
+                arguments: LoadWeb(
+                  title: shopModel.shopName,
+                  url: shopModel.goToUrl,
+                  imageAsset: shopModel.imageAsset,
+                ),
+              );
             },
             child: Card(
               semanticContainer: true,
@@ -29,12 +38,15 @@ class ShopCard extends StatelessWidget {
               elevation: 5,
               child: Column(
                 children: [
-                  Image.asset(
-                    height: size.height * 0.15,
-                    width: double.infinity,
-                    shopModel.imageAsset,
-                    fit: BoxFit.fill,
-                  ),
+                  Hero(
+                    tag: shopModel.shopName,
+                    child: Image.asset(
+                      height: size.height * 0.15,
+                      width: double.infinity,
+                      shopModel.imageAsset,
+                      fit: BoxFit.fill,
+                    ),
+                  )
                 ],
               ),
               /* margin: const EdgeInsets.symmetric(vertical: 10), */
