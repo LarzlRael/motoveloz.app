@@ -27,7 +27,10 @@ class NoResults extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 150, color: Colors.white),
+            Icon(
+              icon,
+              size: 150,
+            ),
             const SizedBox(height: 15),
             Text(message),
             const SizedBox(height: 15),

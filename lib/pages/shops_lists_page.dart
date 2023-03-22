@@ -1,11 +1,46 @@
 part of 'pages.dart';
 
-class ShopsListsPage extends StatelessWidget {
+class ShopsListsPage extends StatefulWidget {
   const ShopsListsPage({super.key});
 
   @override
+  State<ShopsListsPage> createState() => _ShopsListsPageState();
+}
+
+class _ShopsListsPageState extends State<ShopsListsPage> {
+  bool isSwitched = false;
+  @override
   Widget build(BuildContext context) {
+    final themeChanger = Provider.of<ThemeChanger>(context, listen: true);
     return Scaffold(
+      appBar: AppBar(
+        title: Row(children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(5),
+            child: Image.asset(
+              'assets/wara_shop_icon.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.cover,
+            ),
+          ),
+          SizedBox(width: 10),
+          const Text('WaraShops')
+        ]),
+        backgroundColor: Color(0xff33b5e6),
+        actions: [
+          Switch(
+            value: isSwitched,
+            onChanged: (value) {
+              setState(() {
+                isSwitched = value;
+                print(isSwitched);
+                themeChanger.setDarkTheme = isSwitched;
+              });
+            },
+          ),
+        ],
+      ),
       body: PageContainer(
         paddingVertical: 0,
         paddingHorizontal: 8,

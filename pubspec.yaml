@@ -41,6 +41,8 @@ dependencies:
   url_launcher: ^6.1.5
   flutter_web_browser: ^0.17.1
   webview_flutter: ^4.0.7
+  #state management
+  provider: ^6.0.5
 
 flutter_native_splash:
   color: '#33b5e6'

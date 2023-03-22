@@ -1,8 +1,15 @@
+import 'package:WaraShops/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:WaraShops/routes/routes.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeChanger(1),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -10,16 +17,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context).getCurrentTheme;
     return MaterialApp(
       initialRoute: 'list_shops',
       routes: appRoutes,
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      darkTheme: ThemeData(
+      /*  darkTheme: ThemeData(
         brightness: Brightness.dark,
         /* dark theme settings */
-      ),
-      themeMode: ThemeMode.dark,
+      ), */
+      theme: appTheme,
     );
   }
 }
