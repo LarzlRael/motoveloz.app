@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.0.1+1
+version: 2.1.2+1
 
 environment:
   sdk: '>=2.17.6 <3.0.0'
@@ -38,30 +38,29 @@ dependencies:
   sqflite: ^2.0.3+1
   path_provider: ^2.0.5
   # Launcher web
-  url_launcher: ^6.1.5
-  flutter_web_browser: ^0.17.1
+  #url_launcher: ^6.1.5
+  #flutter_web_browser: ^0.17.1
   webview_flutter: ^4.0.7
   #state management
   provider: ^6.0.5
-
+  shared_preferences: ^2.0.20
+  
 flutter_native_splash:
-  color: '#33b5e6'
-  image: assets/wara_shop_icon.png
+  color: '#ffffff'
+  image: assets/wara_shop_icon_2.png
   #branding: assets/branding-development.png
-  color_dark: '#121212'
-  image_dark: assets/wara_shop_icon.png
+  color_dark: '#ffffff'
+  image_dark: assets/wara_shop_icon_2.png
   #branding_dark: assets/branding-development.png
-
   android_12:
     image: 'assets/wara_shop_icon.png'
     icon_background_color: '#33b5e6'
     image_dark: 'assets/wara_shop_icon.png'
-    icon_background_color_dark: '#121212'
+    icon_background_color_dark: '#ffffff'
 
   web: false
 
 dev_dependencies:
-  flutter_launcher_icons: '^0.10.0'
   flutter_test:
     sdk: flutter
 flutter_icons:

@@ -14,19 +14,13 @@ class ThemeChanger with ChangeNotifier {
   }
 
   get getCurrentTheme => _currentTheme;
-  ThemeChanger(int theme) {
-    switch (theme) {
-      case 1:
-        _currentTheme = ThemeData.light();
-        isDarkTheme = false;
-        break;
-      case 2:
-        _currentTheme = ThemeData.dark();
-        isDarkTheme = true;
-        break;
-      default:
-        _currentTheme = ThemeData.light();
-        isDarkTheme = false;
+  ThemeChanger(bool isDarkTheme) {
+    if (isDarkTheme) {
+      _currentTheme = ThemeData.dark();
+      isDarkTheme = true;
+    } else {
+      isDarkTheme = false;
+      _currentTheme = ThemeData.light();
     }
     notifyListeners();
   }

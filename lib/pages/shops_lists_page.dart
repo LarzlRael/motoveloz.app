@@ -8,12 +8,20 @@ class ShopsListsPage extends StatefulWidget {
 }
 
 class _ShopsListsPageState extends State<ShopsListsPage> {
-  bool isSwitched = false;
+  late UserPreferences prefs;
+  late bool isSwitched;
+  @override
+  void initState() {
+    super.initState();
+    isSwitched = UserPreferences.isDarkTheme;
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeChanger = Provider.of<ThemeChanger>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Row(children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
@@ -27,14 +35,14 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
           SizedBox(width: 10),
           const Text('WaraShops')
         ]),
-        backgroundColor: Color(0xff33b5e6),
+        /* backgroundColor: !themeChanger.getDarkTheme ? Color(0xff33b5e6) : null, */
         actions: [
           Switch(
             value: isSwitched,
             onChanged: (value) {
               setState(() {
                 isSwitched = value;
-                print(isSwitched);
+                UserPreferences.isDarkTheme = isSwitched;
                 themeChanger.setDarkTheme = isSwitched;
               });
             },

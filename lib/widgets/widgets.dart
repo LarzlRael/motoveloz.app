@@ -2,9 +2,9 @@ import 'package:WaraShops/dialogs/confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:WaraShops/bloc/history_bloc.dart';
 import 'package:WaraShops/data/shop_data.dart';
-import 'package:WaraShops/data/sql_lite_provider.dart';
 import 'package:WaraShops/utils/utils.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:provider/provider.dart';
+/* import 'package:url_launcher/url_launcher_string.dart'; */
 
 import '../models/models.dart';
 part 'simple_text.dart';

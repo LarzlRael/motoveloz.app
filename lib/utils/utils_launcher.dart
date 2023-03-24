@@ -1,12 +1,12 @@
 part of 'utils.dart';
 
-void launchURL(String url) async {
+/* void launchURL(String url) async {
   if (await canLaunchUrlString(url)) {
     await launchUrlString(url);
   } else {
     throw 'Could not launch $url';
   }
-}
+} */
 
 class LoadWeb {
   final String url;
@@ -20,7 +20,7 @@ class LoadWeb {
   });
 }
 
-Future<void> openBrowserTab(String urlToGo) async {
+/* Future<void> openBrowserTab(String urlToGo) async {
   await FlutterWebBrowser.openWebPage(
     url: urlToGo,
     customTabsOptions: CustomTabsOptions(
@@ -33,5 +33,14 @@ Future<void> openBrowserTab(String urlToGo) async {
       urlBarHidingEnabled: false,
     ),
     safariVCOptions: SafariViewControllerOptions(),
+  );
+}
+ */
+
+void goUrlSelected(BuildContext context, LoadWeb loadWeb) {
+  Navigator.pushNamed(
+    context,
+    'go_url',
+    arguments: loadWeb,
   );
 }

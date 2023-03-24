@@ -17,12 +17,9 @@ class ShopCard extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              /* launchURL(shopModel.goToUrl); */
-              /* openBrowserTab(shopModel.goToUrl); */
-              Navigator.pushNamed(
+              goUrlSelected(
                 context,
-                'go_url',
-                arguments: LoadWeb(
+                LoadWeb(
                   title: shopModel.shopName,
                   url: shopModel.goToUrl,
                   imageAsset: shopModel.imageAsset,
@@ -53,12 +50,10 @@ class ShopCard extends StatelessWidget {
             ),
           ),
           SimpleText(
-            marginVertical: 5,
+            padding: EdgeInsets.symmetric(vertical: 10),
             text: shopModel.shopName.toUpperCase(),
             fontWeight: FontWeight.w700,
             fontSize: 14,
-
-            /* marginVertical: 5, */
           ),
         ],
       ),

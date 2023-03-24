@@ -45,7 +45,6 @@ class _WebViewPageState extends State<WebViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff33b5e6),
         elevation: 0,
         title: Text(widget.loadWeb.title.toTitleCase()),
         leading: IconButton(
@@ -100,7 +99,8 @@ class _WebViewPageState extends State<WebViewPage> {
                   ),
                   SimpleText(
                     text: widget.loadWeb.title.toTitleCase(),
-                    marginVertical: 10,
+                    /* marginVertical: 10, */
+                    padding: EdgeInsets.symmetric(vertical: 15),
                   ),
                   const CircularProgressIndicator(),
                 ],

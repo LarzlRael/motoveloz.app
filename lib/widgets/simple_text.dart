@@ -4,32 +4,32 @@ class SimpleText extends StatelessWidget {
   final String text;
   final FontWeight? fontWeight;
   final double? fontSize;
-  final Color? color;
   final TextStyle? style;
-  final double? marginVertical;
-  final double? marginHorizontal;
   final TextAlign? textAlign;
   final double? lineHeight;
+  final EdgeInsetsGeometry? padding;
+  final Color? lightColor;
+  final Color? darkColor;
   const SimpleText({
     required this.text,
     Key? key,
     this.fontWeight,
-    this.marginVertical,
-    this.marginHorizontal,
+    this.padding,
     this.fontSize,
-    this.color,
     this.style,
     this.textAlign,
     this.lineHeight,
+    this.lightColor,
+    this.darkColor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var brightness = MediaQuery.of(context).platformBrightness;
-    bool isDarkMode = brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final color = isDark ? darkColor : lightColor;
     return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: marginHorizontal ?? 0, vertical: marginVertical ?? 0),
+      padding: padding ?? EdgeInsets.zero,
       child: Text(
         text,
         textAlign: textAlign ?? TextAlign.start,
@@ -38,11 +38,7 @@ class SimpleText extends StatelessWidget {
               height: lineHeight,
               fontWeight: fontWeight ?? FontWeight.normal,
               fontSize: fontSize ?? 14,
-              color: color != null
-                  ? isDarkMode
-                      ? Colors.black
-                      : Colors.white
-                  : color,
+              color: color,
             ),
       ),
     );

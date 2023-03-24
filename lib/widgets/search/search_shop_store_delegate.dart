@@ -89,24 +89,32 @@ class SearchShopStoreDelegate extends SearchDelegate {
     final double sizeImage = 40;
     if (!registerHistory) {
       return ListTile(
-          leading: const Icon(Icons.history),
-          trailing: ClipRRect(
-            borderRadius: BorderRadius.circular(5),
-            child: Image.asset(suggestionItem.imageAsset,
-                width: sizeImage, height: sizeImage),
+        leading: const Icon(Icons.history),
+        trailing: ClipRRect(
+          borderRadius: BorderRadius.circular(5),
+          child: Image.asset(suggestionItem.imageAsset,
+              width: sizeImage, height: sizeImage),
+        ),
+        title: Text(suggestionItem.shopName.toTitleCase()),
+        onLongPress: () => showAlertDialog(
+            context,
+            "Eliminar de historial",
+            SimpleText(
+                text:
+                    "¿Desea eliminar ${suggestionItem.shopName.toTitleCase()} de su historial?"),
+            () async {
+          await historyBloc.deleteHistoryById(suggestionItem.id!);
+          historyBloc.getAllHistory();
+        }),
+        onTap: () => goUrlSelected(
+          context,
+          LoadWeb(
+            title: suggestionItem.shopName,
+            url: suggestionItem.goToUrl,
+            imageAsset: suggestionItem.imageAsset,
           ),
-          title: Text(suggestionItem.shopName.toTitleCase()),
-          onLongPress: () => showAlertDialog(
-                  context,
-                  "Eliminar de historial",
-                  SimpleText(
-                      text:
-                          "¿Desea eliminar ${suggestionItem.shopName.toTitleCase()} de su historial?"),
-                  () async {
-                await historyBloc.deleteHistoryById(suggestionItem.id!);
-                historyBloc.getAllHistory();
-              }),
-          onTap: () => openBrowserTab(suggestionItem.goToUrl));
+        ),
+      );
     }
     return ListTile(
       leading: ClipRRect(
@@ -116,11 +124,19 @@ class SearchShopStoreDelegate extends SearchDelegate {
       ),
       title: Text(suggestionItem.shopName.toTitleCase()),
       onTap: () {
-        openBrowserTab(suggestionItem.goToUrl);
         if (registerHistory) {
           historyBloc
               .newHistory(HistoryModel(querySearched: suggestionItem.shopName));
         }
+
+        goUrlSelected(
+          context,
+          LoadWeb(
+            title: suggestionItem.shopName,
+            url: suggestionItem.goToUrl,
+            imageAsset: suggestionItem.imageAsset,
+          ),
+        );
       },
     );
   }
