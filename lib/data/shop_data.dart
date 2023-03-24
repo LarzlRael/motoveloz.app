@@ -87,7 +87,7 @@ final List<ShopModel> shopData = [
     shopDescription: '',
     shopAddress: '',
     shopPhone: '',
-    goToUrl: 'http://google.com/',
+    goToUrl: 'https://www.google.com/',
   ),
   ShopModel(
     imageAsset: 'assets/shops/mr_piza.jpeg',
@@ -95,7 +95,7 @@ final List<ShopModel> shopData = [
     shopDescription: '',
     shopAddress: '',
     shopPhone: '',
-    goToUrl: 'http://google.com/',
+    goToUrl: 'https://www.google.com/',
   ),
   ShopModel(
     imageAsset: 'assets/shops/elis_pizza.jpeg',
@@ -103,7 +103,7 @@ final List<ShopModel> shopData = [
     shopDescription: '',
     shopAddress: '',
     shopPhone: '',
-    goToUrl: 'http://google.com/',
+    goToUrl: 'https://www.google.com/',
   ),
   ShopModel(
     imageAsset: 'assets/shops/fricarriel.jpeg',
@@ -111,7 +111,7 @@ final List<ShopModel> shopData = [
     shopDescription: '',
     shopAddress: '',
     shopPhone: '',
-    goToUrl: 'http://google.com/',
+    goToUrl: 'https://www.google.com/',
   ),
   ShopModel(
     imageAsset: 'assets/shops/sabor_a_gaucho.jpeg',
@@ -119,7 +119,7 @@ final List<ShopModel> shopData = [
     shopDescription: '',
     shopAddress: '',
     shopPhone: '',
-    goToUrl: 'http://google.com/',
+    goToUrl: 'https://www.google.com/',
   )
 ];
 
