@@ -19,14 +19,14 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
             child: Image.asset(
-              'assets/wara_shop_icon.png',
+              'assets/moto_veloz_icono.jpeg',
               width: 30,
               height: 30,
               fit: BoxFit.cover,
             ),
           ),
           SizedBox(width: 10),
-          const Text('WaraShops')
+          const Text('Motoveloz')
         ]),
         /* backgroundColor: !themeChanger.getDarkTheme ? Color(0xff33b5e6) : null, */
         actions: [

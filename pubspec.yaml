@@ -33,7 +33,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  flutter_launcher_icons: ^0.10.0
+
+
   flutter_native_splash: ^2.1.6
   sqflite: ^2.0.3+1
   path_provider: ^2.0.5
@@ -44,13 +45,13 @@ dependencies:
   #state management
   provider: ^6.0.5
   shared_preferences: ^2.0.20
-  
+
 flutter_native_splash:
-  color: '#ffffff'
-  image: assets/wara_shop_icon_2.png
+  color: '#33b5e6'
+  image: assets/splash.jpeg
   #branding: assets/branding-development.png
-  color_dark: '#ffffff'
-  image_dark: assets/wara_shop_icon_2.png
+  color_dark: '#33b5e6'
+  image_dark: assets/splash.jpeg
   #branding_dark: assets/branding-development.png
   android_12:
     image: 'assets/wara_shop_icon.png'
@@ -61,12 +62,14 @@ flutter_native_splash:
   web: false
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.12.0"
   flutter_test:
     sdk: flutter
+
 flutter_icons:
   android: 'launcher_icon'
   ios: true
-  image_path: 'assets/wara_shop_icon.png'
+  image_path: 'assets/moto_veloz_icono.jpeg'
   min_sdk_android: 21 # android min sdk min:16, default 21
   # min:48, max:256, default: 48
 
