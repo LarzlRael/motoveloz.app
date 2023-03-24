@@ -6,6 +6,8 @@ import '../utils/utils.dart';
 final Map<String, Widget Function(BuildContext)> appRoutes = {
   /* Register and login  */
   'list_shops': (_) => ShopsListsPage(),
+  'gps_request': (_) => AccesoGpsPage(),
+  'loading_page': (_) => LoadingPage(),
   'go_url': (context) => WebViewPage(
         loadWeb: ModalRoute.of(context)?.settings.arguments as LoadWeb,
       ),

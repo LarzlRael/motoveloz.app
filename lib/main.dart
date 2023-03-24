@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final appTheme = Provider.of<ThemeChanger>(context).getCurrentTheme;
     return MaterialApp(
-      initialRoute: 'list_shops',
+      initialRoute: 'loading_page',
       routes: appRoutes,
       debugShowCheckedModeBanner: false,
       title: 'Material App',
