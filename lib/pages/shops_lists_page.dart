@@ -8,16 +8,9 @@ class ShopsListsPage extends StatefulWidget {
 }
 
 class _ShopsListsPageState extends State<ShopsListsPage> {
-  late UserPreferences prefs;
-  late bool isSwitched;
-  @override
-  void initState() {
-    super.initState();
-    isSwitched = UserPreferences.isDarkTheme;
-  }
-
   @override
   Widget build(BuildContext context) {
+    bool isSwitched = UserPreferences.isDarkTheme;
     final themeChanger = Provider.of<ThemeChanger>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
@@ -50,8 +43,7 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
         ],
       ),
       body: PageContainer(
-        paddingVertical: 0,
-        paddingHorizontal: 8,
+        paddingPage: EdgeInsets.symmetric(horizontal: 8),
         child: Column(
           children: [
             SearchBox(),

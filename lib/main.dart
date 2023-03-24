@@ -26,10 +26,6 @@ class MyApp extends StatelessWidget {
       routes: appRoutes,
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      /*  darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        /* dark theme settings */
-      ), */
       theme: appTheme,
     );
   }

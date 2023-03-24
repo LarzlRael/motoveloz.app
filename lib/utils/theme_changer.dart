@@ -1,7 +1,6 @@
 part of 'utils.dart';
 
 class ThemeChanger with ChangeNotifier {
-  /* final preferences = UserPreferences(); */
   bool isDarkTheme = false;
   bool notifications = false;
   int _currentHomeworksTabIndex = 0;
