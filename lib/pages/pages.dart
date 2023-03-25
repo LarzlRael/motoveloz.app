@@ -1,4 +1,5 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:WaraShops/data/constants.dart';
 import 'package:provider/provider.dart';
 
 import '../dialogs/gps_request.dart';
