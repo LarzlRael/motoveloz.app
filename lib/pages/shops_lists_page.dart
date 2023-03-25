@@ -26,7 +26,7 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
             ),
           ),
           SizedBox(width: 10),
-          const Text('Motoveloz')
+          const Text(appName)
         ]),
         /* backgroundColor: !themeChanger.getDarkTheme ? Color(0xff33b5e6) : null, */
         actions: [

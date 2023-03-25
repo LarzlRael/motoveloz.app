@@ -1,7 +1,7 @@
 part of 'utils.dart';
 
 class ThemeChanger with ChangeNotifier {
-  bool isDarkTheme = false;
+  bool _isDarkTheme = false;
   bool notifications = false;
   int _currentHomeworksTabIndex = 0;
   late ThemeData _currentTheme;
@@ -24,20 +24,13 @@ class ThemeChanger with ChangeNotifier {
     notifyListeners();
   }
 
-  bool get getDarkTheme => isDarkTheme;
+  bool get isDarkTheme => _isDarkTheme;
   set setDarkTheme(bool value) {
-    isDarkTheme = value;
-    if (isDarkTheme) {
-      _currentTheme = ThemeData.dark();
-    } else {
-      _currentTheme = ThemeData.light();
-    }
-    notifyListeners();
-  }
-
-  bool get getNotifications => notifications;
-  set setNotifications(bool value) {
-    notifications = value;
+    _isDarkTheme = value;
+    _currentTheme = isDarkTheme
+        ? ThemeData.dark()
+        : ThemeData.light()
+            .copyWith(appBarTheme: AppBarTheme(color: Color(0xff33b5e5)));
     notifyListeners();
   }
 }
