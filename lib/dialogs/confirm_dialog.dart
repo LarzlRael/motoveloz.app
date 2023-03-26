@@ -61,6 +61,7 @@ requestGPSactivation(
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: 10,
+          horizontal: 5,
         ),
         decoration: BoxDecoration(
           /* color: Colors.grey[200], */
@@ -91,7 +92,7 @@ requestGPSactivation(
               ],
             ),
             SimpleText(
-              text: "Para poder usar la aplicación es necesario activar el GPS",
+              text: "Para usar esta aplicación activa el GPS",
               fontSize: 14,
               textAlign: TextAlign.center,
               fontWeight: FontWeight.w400,
