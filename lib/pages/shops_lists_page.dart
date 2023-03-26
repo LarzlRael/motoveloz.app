@@ -9,9 +9,16 @@ class ShopsListsPage extends StatefulWidget {
 
 class _ShopsListsPageState extends State<ShopsListsPage> {
   @override
+  void initState() {
+    checkLocationPermission(context);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     bool isSwitched = UserPreferences.isDarkTheme;
-    final themeChanger = Provider.of<ThemeChanger>(context, listen: true);
+    final themeChanger = Provider.of<ThemeProvider>(context, listen: true);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -28,7 +35,6 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
           SizedBox(width: 10),
           const Text(appName)
         ]),
-        /* backgroundColor: !themeChanger.getDarkTheme ? Color(0xff33b5e6) : null, */
         actions: [
           Switch(
             value: isSwitched,

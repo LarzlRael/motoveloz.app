@@ -9,7 +9,7 @@ void main() async {
   await UserPreferences.init();
   runApp(
     ChangeNotifierProvider(
-      create: (_) => ThemeChanger(UserPreferences.isDarkTheme),
+      create: (_) => ThemeProvider(UserPreferences.isDarkTheme),
       child: const MyApp(),
     ),
   );
@@ -20,13 +20,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appTheme = Provider.of<ThemeChanger>(context).getCurrentTheme;
+    final appTheme = Provider.of<ThemeProvider>(context).getCurrentTheme;
     return MaterialApp(
-      initialRoute: 'loading_page',
       routes: appRoutes,
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       theme: appTheme,
+      initialRoute: 'list_shops',
     );
   }
 }
