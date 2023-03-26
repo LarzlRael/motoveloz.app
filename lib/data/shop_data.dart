@@ -59,7 +59,7 @@ final List<ShopModel> shopData = [
   ),
   ShopModel(
     imageAsset: 'assets/shops/pollos-yacks-alto.jpeg',
-    shopName: 'pollos yacks alto',
+    shopName: 'pollos yack\'\s',
     shopDescription: '',
     shopAddress: '',
     shopPhone: '',
@@ -120,7 +120,63 @@ final List<ShopModel> shopData = [
     shopAddress: '',
     shopPhone: '',
     goToUrl: 'https://www.google.com/',
-  )
+  ),
+  ShopModel(
+    imageAsset: 'assets/shops/loco_pollo.jpeg',
+    shopName: 'Loco Pollo',
+    shopDescription: '',
+    shopAddress: '',
+    shopPhone: '',
+    goToUrl: 'https://loco-pollo.ola.click/products',
+  ),
+  ShopModel(
+    imageAsset: 'assets/shops/pasion_criolla.jpeg',
+    shopName: 'Pasion Criolla',
+    shopDescription: '',
+    shopAddress: '',
+    shopPhone: '',
+    goToUrl: 'https://pasion-criolla.ola.click/products',
+  ),
+  ShopModel(
+    imageAsset: 'assets/shops/sabor_a_peru.jpeg',
+    shopName: 'Sabor a Peru',
+    shopDescription: '',
+    shopAddress: '',
+    shopPhone: '',
+    goToUrl: 'https://sabor-peruano-bo.ola.click/products',
+  ),
+  ShopModel(
+    imageAsset: 'assets/shops/pollos_jose_jose.jpeg',
+    shopName: 'Pollos Jose Jose',
+    shopDescription: '',
+    shopAddress: '',
+    shopPhone: '',
+    goToUrl: 'https://pollos-jose-jose.ola.click/products',
+  ),
+  ShopModel(
+    imageAsset: 'assets/shops/charquekan_sajameno.jpeg',
+    shopName: 'Charquekan Sajameno',
+    shopDescription: '',
+    shopAddress: '',
+    shopPhone: '',
+    goToUrl: 'https://charquekan-sajameno.ola.click/products',
+  ),
+  ShopModel(
+    imageAsset: 'assets/shops/don_salteñon.jpeg',
+    shopName: 'Don Salteñon',
+    shopDescription: '',
+    shopAddress: '',
+    shopPhone: '',
+    goToUrl: 'https://don-saltenon.ola.click/products',
+  ),
+  ShopModel(
+    imageAsset: 'assets/shops/snack_iglu.jpeg',
+    shopName: 'Snack Iglu Cielo Mall',
+    shopDescription: '',
+    shopAddress: '',
+    shopPhone: '',
+    goToUrl: 'https://snack-iglu-cielo-mall.ola.click/products',
+  ),
 ];
 
 List<ShopModel> sortedShopByName() {

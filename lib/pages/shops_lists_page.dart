@@ -19,7 +19,7 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
             child: Image.asset(
-              'assets/moto_veloz_icono.jpeg',
+              'assets/moto_veloz_logo2.jpeg',
               width: 30,
               height: 30,
               fit: BoxFit.cover,

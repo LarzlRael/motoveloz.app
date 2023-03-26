@@ -5,7 +5,7 @@ class SearchBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final getColors = context.select((ThemeChanger theme) => theme.isDarkTheme);
+    final isDarkTheme = UserPreferences.isDarkTheme;
     final size = MediaQuery.of(context).size;
     return Container(
         width: size.width,
@@ -21,7 +21,7 @@ class SearchBox extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
             width: double.infinity,
             decoration: BoxDecoration(
-              color: getColors ? Colors.black54 : Colors.white54,
+              color: isDarkTheme ? Colors.black54 : Colors.white54,
               borderRadius: BorderRadius.circular(100),
               boxShadow: const [
                 BoxShadow(
@@ -40,7 +40,7 @@ class SearchBox extends StatelessWidget {
                 ),
                 Icon(
                   Icons.search,
-                  color: !getColors ? Colors.black54 : Colors.white54,
+                  color: !isDarkTheme ? Colors.black54 : Colors.white54,
                 )
               ],
             ),

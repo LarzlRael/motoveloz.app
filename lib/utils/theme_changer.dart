@@ -30,7 +30,7 @@ class ThemeChanger with ChangeNotifier {
     _currentTheme = isDarkTheme
         ? ThemeData.dark()
         : ThemeData.light()
-            .copyWith(appBarTheme: AppBarTheme(color: Color(0xff33b5e5)));
+            .copyWith(appBarTheme: AppBarTheme(color: Color(0xffff5400)));
     notifyListeners();
   }
 }
