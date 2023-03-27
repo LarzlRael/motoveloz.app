@@ -7,11 +7,28 @@ class ShopsListsPage extends StatefulWidget {
   State<ShopsListsPage> createState() => _ShopsListsPageState();
 }
 
-class _ShopsListsPageState extends State<ShopsListsPage> {
+class _ShopsListsPageState extends State<ShopsListsPage>
+    with WidgetsBindingObserver {
   @override
   void initState() {
+    WidgetsBinding.instance.addObserver(this);
     checkLocationPermission(context);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  didChangeAppLifecycleState(AppLifecycleState state) async {
+    if (state == AppLifecycleState.resumed) {
+      if (!await Permission.location.isGranted) {
+        checkLocationPermission(context);
+      }
+    }
   }
 
   @override

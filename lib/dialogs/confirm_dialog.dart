@@ -93,9 +93,28 @@ requestGPSactivation(
             ),
             SimpleText(
               text:
-                  "Para utilizar todas las funciones de esta aplicación, es necesario activar el GPS y permitir el acceso a tu ubicación en segundo plano                  \n La ubicación en segundo plano se utiliza para proporcionar resultados precisos y relevantes en función de tu ubicación actual.",
+                  "Para utilizar todas las funciones de esta aplicación, es necesario activar el GPS y permitir el acceso a tu ubicación en segundo plano.",
               fontSize: 14,
-              textAlign: TextAlign.center,
+              fontWeight: FontWeight.w400,
+              lightColor: Colors.grey[700],
+              padding: EdgeInsets.symmetric(
+                vertical: 4,
+              ),
+            ),
+            SimpleText(
+              text:
+                  "Funciones que utilizan la ubicación en segundo plano incluyen la búsqueda de negocios cercanos, la navegación paso a paso y las recomendaciones personalizadas basadas en tu ubicación actual",
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              lightColor: Colors.grey[700],
+              padding: EdgeInsets.symmetric(
+                vertical: 4,
+              ),
+            ),
+            SimpleText(
+              text:
+                  "Pulsa el botón \"\Continuar\"\ para permitir que la aplicación acceda a tu ubicación en segundo plano y disfrutar de todas las funciones",
+              fontSize: 14,
               fontWeight: FontWeight.w400,
               lightColor: Colors.grey[700],
               padding: EdgeInsets.symmetric(
@@ -110,7 +129,7 @@ requestGPSactivation(
                   borderRadius: BorderRadius.circular(10),
                 ),
                 padding: EdgeInsets.symmetric(
-                  horizontal: 80,
+                  horizontal: 75,
                   vertical: 15,
                 ),
               ),
