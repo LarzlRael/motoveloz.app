@@ -118,8 +118,18 @@ class _WebViewPageState extends State<WebViewPage> {
                   const CircularProgressIndicator(),
                 ],
               ))
-            : WebViewWidget(
-                controller: controller,
+            : WillPopScope(
+                child: WebViewWidget(
+                  controller: controller,
+                ),
+                onWillPop: () async {
+                  if (await controller.canGoBack()) {
+                    await controller.goBack();
+                    return false;
+                  } else {
+                    return true;
+                  }
+                },
               ),
       ),
     );

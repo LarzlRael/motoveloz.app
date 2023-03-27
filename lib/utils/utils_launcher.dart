@@ -6,10 +6,11 @@ void launchURL(String url, {String webComes = ""}) async {
   final message =
       'Hola, vengo de $webComes Deseo realizar el siguiente pedido: ';
 
-  var whatsappUrl = sendWhatsappMessage(phone, message);
+  final whatsappUrl = sendWhatsappMessage(phone, message);
+  final loadUrl = isWhatsapp ? whatsappUrl : url;
 
-  if (await canLaunchUrlString(isWhatsapp ? whatsappUrl : url)) {
-    await launchUrlString(isWhatsapp ? whatsappUrl : url);
+  if (await canLaunchUrlString(loadUrl)) {
+    await launchUrlString(loadUrl);
   } else {
     throw 'Could not launch $url';
   }
