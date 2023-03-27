@@ -92,7 +92,8 @@ requestGPSactivation(
               ],
             ),
             SimpleText(
-              text: "Para usar esta aplicación activa el GPS",
+              text:
+                  "Para utilizar todas las funciones de esta aplicación, es necesario activar el GPS y permitir el acceso a tu ubicación en segundo plano                  \n La ubicación en segundo plano se utiliza para proporcionar resultados precisos y relevantes en función de tu ubicación actual.",
               fontSize: 14,
               textAlign: TextAlign.center,
               fontWeight: FontWeight.w400,

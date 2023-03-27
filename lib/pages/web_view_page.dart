@@ -34,6 +34,19 @@ class _WebViewPageState extends State<WebViewPage> {
             if (request.url.startsWith('https://www.youtube.com/')) {
               return NavigationDecision.prevent;
             }
+            if (request.url.contains('whatsapp:/')) {
+              launchURL(
+                request.url,
+                webComes: widget.loadWeb.url,
+              );
+              return NavigationDecision.prevent;
+            }
+            if (request.url.contains('tel:')) {
+              launchURL(
+                request.url,
+              );
+              return NavigationDecision.prevent;
+            }
             return NavigationDecision.navigate;
           },
         ),

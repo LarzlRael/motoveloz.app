@@ -3,8 +3,6 @@ import 'package:WaraShops/data/constants.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 
-import '../dialogs/confirm_dialog.dart';
-
 import '../helpers/helpers.dart';
 import '../utils/utils.dart';
 import 'package:flutter/material.dart';

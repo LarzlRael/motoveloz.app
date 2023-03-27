@@ -41,6 +41,7 @@ dependencies:
   # Launcher web
   
   #flutter_web_browser: ^0.17.1
+  url_launcher: ^6.1.10
   webview_flutter: ^4.0.7
   #state management
   provider: ^6.0.5
