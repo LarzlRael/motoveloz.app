@@ -1,7 +1,5 @@
 import 'package:WaraShops/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-/* import math package */
-import 'package:vector_math/vector_math.dart' as math;
 
 showAlertDialog(
   BuildContext context,
@@ -122,6 +120,27 @@ requestGPSactivation(
               ),
             ),
             ElevatedButton(
+              child:
+                  Text("Denegar", style: TextStyle(color: Color(0xffff5400))),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black.withOpacity(0.05),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                side: BorderSide(
+                  color: Color(0xffff5400),
+                  width: 1,
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 75,
+                  vertical: 15,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ElevatedButton(
               child: Text("Continuar"),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xffff5400),
@@ -137,7 +156,7 @@ requestGPSactivation(
                 confirmOnTap();
                 Navigator.of(context).pop();
               },
-            )
+            ),
           ],
         ),
       ),
