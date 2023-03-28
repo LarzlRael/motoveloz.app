@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.1.7+1
+version: 2.1.8+1
 
 environment:
   sdk: '>=2.17.6 <3.0.0'
@@ -55,15 +55,15 @@ dependencies:
 
 flutter_native_splash:
   color: '#ff5400'
-  image: assets/moto_veloz_logo2.jpeg
+  image: assets/moto_veloz_splash.jpeg
   #branding: assets/branding-development.png
   color_dark: '#ff5400'
-  image_dark: assets/moto_veloz_logo2.jpeg
+  image_dark: assets/moto_veloz_splash.jpeg
   #branding_dark: assets/branding-development.png
   android_12:
-    image: assets/moto_veloz_logo2.jpeg
+    image: assets/moto_veloz_splash.jpeg
     icon_background_color: '#ff5400'
-    image_dark: assets/moto_veloz_logo2.jpeg
+    image_dark: assets/moto_veloz_splash.jpeg
     icon_background_color_dark: '#ffffff'
 
   web: false
@@ -76,7 +76,7 @@ dev_dependencies:
 flutter_icons:
   android: 'launcher_icon'
   ios: true
-  image_path: 'assets/moto_veloz_logo2.jpeg'
+  image_path: 'assets/moto_veloz_logo.jpeg'
   min_sdk_android: 21 # android min sdk min:16, default 21
   # min:48, max:256, default: 48
 
