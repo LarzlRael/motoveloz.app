@@ -1,6 +1,8 @@
 import 'package:WaraShops/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/utils.dart';
+
 showAlertDialog(
   BuildContext context,
   String title,
@@ -176,5 +178,31 @@ requestGPSactivation(
       );
     },
     transitionDuration: const Duration(milliseconds: 300),
+  );
+}
+
+showDivulgationDialog(BuildContext context) {
+  final dialogContext = context;
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text("Necesitamos acceder a tu ubicación en segundo plano"),
+      content: Text(
+          "Para ofrecerte la mejor experiencia de navegación, necesitamos acceder a tu ubicación en segundo plano. No compartiremos tu ubicación con terceros."),
+      actions: [
+        TextButton(
+          child: Text("Aceptar"),
+          onPressed: () async {
+            Navigator.of(context).pop();
+
+            await checkLocationPermission(dialogContext);
+          },
+        ),
+        TextButton(
+          child: Text("Cancelar"),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ],
+    ),
   );
 }

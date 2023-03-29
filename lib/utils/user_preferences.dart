@@ -12,4 +12,9 @@ class UserPreferences {
   static set isDarkTheme(bool value) {
     _prefs.setBool('isDarkTheme', value);
   }
+
+  static bool get isFirstTime => _prefs.getBool('isFirstTime') ?? false;
+  static set isFirstTime(bool value) {
+    _prefs.setBool('isFirstTime', value);
+  }
 }

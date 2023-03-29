@@ -11,9 +11,14 @@ class _ShopsListsPageState extends State<ShopsListsPage>
     with WidgetsBindingObserver {
   @override
   void initState() {
-    WidgetsBinding.instance.addObserver(this);
-    checkLocationPermission(context);
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    /*  checkLocationPermission(context); */
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => {
+          if (!UserPreferences.isFirstTime)
+            {UserPreferences.isFirstTime = true, showDivulgationDialog(context)}
+        });
   }
 
   @override
@@ -43,7 +48,7 @@ class _ShopsListsPageState extends State<ShopsListsPage>
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
             child: Image.asset(
-              'assets/moto_veloz_logo2.jpeg',
+              'assets/moto_veloz_logo.jpeg',
               width: 30,
               height: 30,
               fit: BoxFit.cover,
