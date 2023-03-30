@@ -31,7 +31,7 @@ final List<ShopModel> shopData = [
     shopDescription: '',
     shopAddress: '',
     shopPhone: '',
-    goToUrl: 'https://michelline.ola.click/products',
+    goToUrl: 'https://nikis.ola.click/products',
   ),
   ShopModel(
     imageAsset: 'assets/shops/michelline.jpeg',
@@ -87,7 +87,7 @@ final List<ShopModel> shopData = [
     shopDescription: '',
     shopAddress: '',
     shopPhone: '',
-    goToUrl: 'https://www.google.com/',
+    goToUrl: 'https://salchisalvaje-alto.ola.click/products',
   ),
   ShopModel(
     imageAsset: 'assets/shops/mr_piza.jpeg',
@@ -95,7 +95,7 @@ final List<ShopModel> shopData = [
     shopDescription: '',
     shopAddress: '',
     shopPhone: '',
-    goToUrl: 'https://www.google.com/',
+    goToUrl: 'https://mr-pizza.ola.click/products',
   ),
   ShopModel(
     imageAsset: 'assets/shops/elis_pizza.jpeg',
@@ -103,7 +103,7 @@ final List<ShopModel> shopData = [
     shopDescription: '',
     shopAddress: '',
     shopPhone: '',
-    goToUrl: 'https://www.google.com/',
+    goToUrl: 'https://pizzas-elis.ola.click/products',
   ),
   ShopModel(
     imageAsset: 'assets/shops/fricarriel.jpeg',
@@ -111,7 +111,7 @@ final List<ShopModel> shopData = [
     shopDescription: '',
     shopAddress: '',
     shopPhone: '',
-    goToUrl: 'https://www.google.com/',
+    goToUrl: 'https://fricarriel.ola.click/products',
   ),
   ShopModel(
     imageAsset: 'assets/shops/sabor_a_gaucho.jpeg',
@@ -170,12 +170,12 @@ final List<ShopModel> shopData = [
     goToUrl: 'https://don-saltenon.ola.click/products',
   ),
   ShopModel(
-    imageAsset: 'assets/shops/snack_iglu.jpeg',
-    shopName: 'Snack Iglu Cielo Mall',
+    imageAsset: 'assets/shops/toby_hamburguesa.jpeg',
+    shopName: 'Toby',
     shopDescription: '',
     shopAddress: '',
     shopPhone: '',
-    goToUrl: 'https://snack-iglu-cielo-mall.ola.click/products',
+    goToUrl: 'https://toby.ola.click/products',
   ),
 ];
 
