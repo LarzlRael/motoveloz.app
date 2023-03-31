@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "247140810864",
+    "project_id": "motoveloz-e02c0",
+    "storage_bucket": "motoveloz-e02c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247140810864:android:14f1e58683803ce128f4b5",
+        "android_client_info": {
+          "package_name": "com.neo.WaraShops"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247140810864-8e8q0tdbvhl97vv99qn5hu462qr1ncrn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkdvGFE7V4Gub6C_6RHaL9wKqxEQbQbm4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247140810864-8e8q0tdbvhl97vv99qn5hu462qr1ncrn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

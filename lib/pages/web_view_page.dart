@@ -127,11 +127,6 @@ class _WebViewPageState extends State<WebViewPage> {
                       ),
                     ),
                   ),
-                  SimpleText(
-                    text: widget.loadWeb.title.toTitleCase(),
-                    /* marginVertical: 10, */
-                    padding: EdgeInsets.symmetric(vertical: 15),
-                  ),
                   /* const CircularProgressIndicator(), */
                   const SizedBox(height: 10),
                   Container(
