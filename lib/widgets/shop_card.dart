@@ -1,10 +1,10 @@
 part of 'widgets.dart';
 
 class ShopCard extends StatelessWidget {
-  final ShopModel shopModel;
+  final StoreModel storeModel;
   const ShopCard({
     super.key,
-    required this.shopModel,
+    required this.storeModel,
   });
 
   @override
@@ -20,9 +20,9 @@ class ShopCard extends StatelessWidget {
               goUrlSelected(
                 context,
                 LoadWeb(
-                  title: shopModel.shopName,
-                  url: shopModel.goToUrl,
-                  imageAsset: shopModel.imageAsset,
+                  title: storeModel.storeName,
+                  url: storeModel.storeUrl,
+                  imageAsset: storeModel.imageUrl,
                 ),
               );
             },
@@ -36,11 +36,11 @@ class ShopCard extends StatelessWidget {
               child: Column(
                 children: [
                   Hero(
-                    tag: shopModel.shopName,
-                    child: Image.asset(
+                    tag: storeModel.storeName,
+                    child: Image.network(
                       height: size.height * 0.15,
                       width: double.infinity,
-                      shopModel.imageAsset,
+                      storeModel.imageUrl,
                       fit: BoxFit.fill,
                     ),
                   )
@@ -51,7 +51,7 @@ class ShopCard extends StatelessWidget {
           ),
           SimpleText(
             padding: EdgeInsets.symmetric(vertical: 10),
-            text: shopModel.shopName.toUpperCase(),
+            text: storeModel.storeName.toUpperCase(),
             fontWeight: FontWeight.w700,
             fontSize: 14,
           ),

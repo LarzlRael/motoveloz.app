@@ -88,7 +88,7 @@ class _WebViewPageState extends State<WebViewPage> {
             padding: const EdgeInsets.all(8.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
-              child: Image.asset(
+              child: Image.network(
                 widget.loadWeb.imageAsset,
                 width: 40,
               ),
@@ -119,7 +119,7 @@ class _WebViewPageState extends State<WebViewPage> {
                     borderRadius: BorderRadius.circular(16.0),
                     child: Hero(
                       tag: widget.loadWeb.title,
-                      child: Image.asset(
+                      child: Image.network(
                         widget.loadWeb.imageAsset,
                         width: 250.0,
                         height: 200.0,

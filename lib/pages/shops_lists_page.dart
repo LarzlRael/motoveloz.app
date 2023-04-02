@@ -40,7 +40,7 @@ class _ShopsListsPageState extends State<ShopsListsPage>
   Widget build(BuildContext context) {
     bool isSwitched = UserPreferences.isDarkTheme;
     final themeChanger = Provider.of<ThemeProvider>(context, listen: true);
-
+    final storeService = StoreServices();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -81,30 +81,37 @@ class _ShopsListsPageState extends State<ShopsListsPage>
             Expanded(
               /* remove shadow */
 
-              child: GridView.count(
+              /* child: GridView.count(
                 primary: false,
                 /* padding: const EdgeInsets.all(20), */
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
                 crossAxisCount: 2,
                 children: shopData.map((e) => ShopCard(shopModel: e)).toList(),
+              ), */
+              child: FutureDataWidget(
+                future: StoreServices().getHomeworksByUser(),
+                builder: (List<StoreModel> data) {
+                  return GridView.count(
+                      primary: false,
+                      /* padding: const EdgeInsets.all(20), */
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      crossAxisCount: 2,
+                      children: data
+                          .map((e) => ShopCard(
+                                storeModel: e,
+                              ))
+                          .toList());
+                },
+                noResultsWidget: NoResults(
+                  icon: Icons.search_off,
+                  message: 'No hay negocios disponibles',
+                  showButton: false,
+                  iconButton: Icons.search_off,
+                ),
               ),
             ),
-            /*  TitlesSeparator(title: 'Volver a escuchar', moreText: 'MÁS'),
-            Expanded(
-              child: GridView.count(
-                primary: false,
-                /* padding: const EdgeInsets.all(20), */
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                crossAxisCount: 2,
-                children: <Widget>[
-                  ShopCard(),
-                  ShopCard(),
-                  ShopCard(),
-                ],
-              ),
-            ), */
           ],
         ),
       ),

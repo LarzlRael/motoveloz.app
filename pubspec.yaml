@@ -48,13 +48,13 @@ dependencies:
   shared_preferences: ^2.0.20
 
   #notifications
-  flutter_local_notifications: ^9.5.3+1
-  firebase_messaging: ^11.4.1
-  firebase_core: ^1.17.1
+  flutter_local_notifications: ^14.0.0-dev.2
+  firebase_messaging: ^14.4.0
+  firebase_core: ^2.9.0
 
   animate_do: ^3.0.2
   geolocator: ^9.0.2
-  dio: ^5.0.3
+  http: ^0.13.5
   permission_handler: ^10.2.0
 
 flutter_native_splash:
