@@ -40,7 +40,10 @@ class _ShopsListsPageState extends State<ShopsListsPage>
   Widget build(BuildContext context) {
     bool isSwitched = UserPreferences.isDarkTheme;
     final themeChanger = Provider.of<ThemeProvider>(context, listen: true);
-    final storeService = StoreServices();
+    StoreServices storeServices = StoreServices();
+    storeServices.saveDeviceId().then((value) => print(value)).catchError((e) {
+      print(e);
+    });
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -115,36 +118,6 @@ class _ShopsListsPageState extends State<ShopsListsPage>
           ],
         ),
       ),
-    );
-  }
-}
-
-class TitlesSeparator extends StatelessWidget {
-  final String title;
-  final String moreText;
-  final double fontSize;
-  const TitlesSeparator({
-    Key? key,
-    required this.title,
-    required this.moreText,
-    this.fontSize = 20,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SimpleText(
-          text: title,
-          fontWeight: FontWeight.bold,
-          fontSize: fontSize,
-        ),
-        SimpleText(
-          text: moreText,
-          fontSize: fontSize - 6,
-        ),
-      ],
     );
   }
 }
