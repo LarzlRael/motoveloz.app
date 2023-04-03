@@ -20,9 +20,6 @@ class StoreModel {
     required this.storeAddress,
     required this.storePhone,
     required this.storeUrl,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.v,
   });
 
   bool storeVisiblity;
@@ -34,9 +31,6 @@ class StoreModel {
   String storeAddress;
   String storePhone;
   String storeUrl;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int v;
 
   factory StoreModel.fromJson(Map<String, dynamic> json) => StoreModel(
         storeVisiblity: json["storeVisiblity"],
@@ -48,9 +42,6 @@ class StoreModel {
         storeAddress: json["storeAddress"],
         storePhone: json["storePhone"],
         storeUrl: json["storeUrl"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -63,8 +54,5 @@ class StoreModel {
         "storeAddress": storeAddress,
         "storePhone": storePhone,
         "storeUrl": storeUrl,
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
-        "__v": v,
       };
 }
