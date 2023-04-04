@@ -7,35 +7,7 @@ class ShopsListsPage extends StatefulWidget {
   State<ShopsListsPage> createState() => _ShopsListsPageState();
 }
 
-class _ShopsListsPageState extends State<ShopsListsPage>
-    with WidgetsBindingObserver {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-    /*  checkLocationPermission(context); */
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => {
-          if (!UserPreferences.isFirstTime)
-            {UserPreferences.isFirstTime = true, showDivulgationDialog(context)}
-        });
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  didChangeAppLifecycleState(AppLifecycleState state) async {
-    if (state == AppLifecycleState.resumed) {
-      if (!await Permission.location.isGranted) {
-        checkLocationPermission(context);
-      }
-    }
-  }
-
+class _ShopsListsPageState extends State<ShopsListsPage> {
   @override
   Widget build(BuildContext context) {
     bool isSwitched = UserPreferences.isDarkTheme;
@@ -93,7 +65,7 @@ class _ShopsListsPageState extends State<ShopsListsPage>
                 children: shopData.map((e) => ShopCard(shopModel: e)).toList(),
               ), */
               child: FutureDataWidget(
-                future: StoreServices().getHomeworksByUser(),
+                future: StoreServices().getAllStores(),
                 builder: (List<StoreModel> data) {
                   return GridView.count(
                       primary: false,
