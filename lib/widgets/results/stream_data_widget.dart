@@ -21,6 +21,9 @@ class StreamDataWidget<T> extends StatelessWidget {
         if (snapshot.data is List && (snapshot.data as List).isEmpty) {
           return noResultsWidget;
         }
+        /* if (snapshot.data is Map && (snapshot.data as Map).isEmpty) {
+          return noResultsWidget;
+        } */
         return builder(snapshot.data!);
       },
     );

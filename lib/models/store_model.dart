@@ -27,9 +27,9 @@ class StoreModel {
   String storeName;
   dynamic storePublicImageId;
   String imageUrl;
-  String storeDescription;
-  String storeAddress;
-  String storePhone;
+  dynamic storeDescription;
+  dynamic storeAddress;
+  dynamic storePhone;
   String storeUrl;
 
   factory StoreModel.fromJson(Map<String, dynamic> json) => StoreModel(

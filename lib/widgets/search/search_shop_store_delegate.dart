@@ -2,6 +2,7 @@ part of '../widgets.dart';
 
 class SearchShopStoreDelegate extends SearchDelegate {
   HistoryBloc historyBloc = HistoryBloc();
+  ResultBloc resultBloc = ResultBloc();
 
   @override
   /* final String searchFieldLabel; */
@@ -16,8 +17,6 @@ class SearchShopStoreDelegate extends SearchDelegate {
       onChanged: (query) => _search(query),
     );
   }
-
-  List<StoreModel> _lastSearchResult = [];
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -35,45 +34,58 @@ class SearchShopStoreDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    if (query.isEmpty) {
-      return _lastSearchResult.isEmpty
-          ? NoResults(
+    resultBloc.getSearchStore(query);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SimpleText(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            text: query.isNotEmpty
+                ? 'Resultados de busqueda para "$query"'
+                : 'Mostrando todos los resultados'),
+        Expanded(
+          child: StreamDataWidget<List<StoreModel>>(
+            stream: resultBloc.resulStream,
+            builder: (data) => listViewSuggestResult(data),
+            noResultsWidget: NoResults(
               icon: Icons.search_off,
               message: 'No hay resultados para "$query"',
               showButton: false,
               iconButton: Icons.search_off,
-            )
-          : listViewItems(_lastSearchResult);
-    }
-
-    _search(query);
-    return listViewSuggestResult(_lastSearchResult);
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
     historyBloc.getAllHistory();
-    _debouncer.value = query;
-    if (query.isEmpty) {
-      return _lastSearchResult.isEmpty
-          ? NoResults(
-              icon: Icons.search_off,
-              message: 'No hay resultados para "$query"',
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SimpleText(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            text: 'Historial de busquedas'),
+        Expanded(
+          child: StreamDataWidget<List<HistoryModel>>(
+            stream: historyBloc.scansStream,
+            builder: (data) => listViewBlocHistory(data),
+            noResultsWidget: NoResults(
+              icon: Icons.history,
+              message: 'No hay historial de busquedas',
               showButton: false,
               iconButton: Icons.search_off,
-            )
-          : listViewItems(_lastSearchResult);
-    }
-
-    return StreamDataWidget<List<HistoryModel>>(
-      stream: historyBloc.scansStream,
-      builder: (data) => listViewBlocHistory(data),
-      noResultsWidget: NoResults(
-        icon: Icons.history,
-        message: 'No hay historial de busquedas',
-        showButton: false,
-        iconButton: Icons.search_off,
-      ),
+            ),
+          ),
+        )
+      ],
     );
   }
 
@@ -86,20 +98,73 @@ class SearchShopStoreDelegate extends SearchDelegate {
     );
   }
 
-  ListView listViewBlocHistory(List<HistoryModel> suggestionList) {
+  ListView listViewBlocHistory(List<HistoryModel> historyList) {
     return ListView.builder(
-      itemCount: _lastSearchResult.length,
+      itemCount: historyList.length,
       itemBuilder: (context, i) {
-        return renderItemList(context, _lastSearchResult[i], false);
+        return ListTile(
+          leading: const Icon(Icons.history),
+          trailing: ClipRRect(
+            borderRadius: BorderRadius.circular(5),
+            child: Image.network(
+              historyList[i].storeImageUrl,
+              width: 40,
+              height: 40,
+            ),
+          ),
+          title: Text(historyList[i].storeName.toTitleCase()),
+          onLongPress: () => showAlertDialog(
+              context,
+              "Eliminar de historial",
+              SimpleText(
+                  text:
+                      "¿Desea eliminar ${historyList[i].storeName.toTitleCase()} de su historial?"),
+              () async {
+            await historyBloc.deleteHistoryById(historyList[i].id!);
+            historyBloc.getAllHistory();
+          }),
+          onTap: () => goUrlSelected(
+            context,
+            LoadWeb(
+              title: historyList[i].storeName,
+              url: historyList[i].storeUrl,
+              imageAsset: historyList[i].storeImageUrl,
+            ),
+          ),
+        );
       },
     );
   }
 
   ListView listViewSuggestResult(List<StoreModel> suggestionList) {
+    final double sizeImage = 40;
     return ListView.builder(
-      itemCount: _lastSearchResult.length,
+      itemCount: suggestionList.length,
       itemBuilder: (context, i) {
-        return renderItemList(context, _lastSearchResult[i], false);
+        return ListTile(
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(5),
+            child: Image.network(suggestionList[i].imageUrl,
+                width: sizeImage, height: sizeImage),
+          ),
+          title: Text(suggestionList[i].storeName.toTitleCase()),
+          onTap: () {
+            historyBloc.saveHistory(HistoryModel(
+              storeName: suggestionList[i].storeName,
+              storeUrl: suggestionList[i].storeUrl,
+              storeImageUrl: suggestionList[i].imageUrl,
+            ));
+
+            goUrlSelected(
+              context,
+              LoadWeb(
+                title: suggestionList[i].storeName,
+                url: suggestionList[i].storeUrl,
+                imageAsset: suggestionList[i].imageUrl,
+              ),
+            );
+          },
+        );
       },
     );
   }
@@ -112,8 +177,11 @@ class SearchShopStoreDelegate extends SearchDelegate {
         leading: const Icon(Icons.history),
         trailing: ClipRRect(
           borderRadius: BorderRadius.circular(5),
-          child: Image.network(suggestionItem.imageUrl,
-              width: sizeImage, height: sizeImage),
+          child: Image.network(
+            suggestionItem.imageUrl,
+            width: sizeImage,
+            height: sizeImage,
+          ),
         ),
         title: Text(suggestionItem.storeName.toTitleCase()),
         onLongPress: () => showAlertDialog(
@@ -145,8 +213,11 @@ class SearchShopStoreDelegate extends SearchDelegate {
       title: Text(suggestionItem.storeName.toTitleCase()),
       onTap: () {
         if (registerHistory) {
-          historyBloc.newHistory(
-              HistoryModel(querySearched: suggestionItem.storeName));
+          historyBloc.saveHistory(HistoryModel(
+            storeName: suggestionItem.storeName,
+            storeUrl: suggestionItem.storeUrl,
+            storeImageUrl: suggestionItem.imageUrl,
+          ));
         }
 
         goUrlSelected(
@@ -162,7 +233,6 @@ class SearchShopStoreDelegate extends SearchDelegate {
   }
 
   Future<void> _search(String query) async {
-    final searchResult = await StoreServices().getSearchStores(query);
-    _lastSearchResult = searchResult;
+    resultBloc.getSearchStore(query);
   }
 }

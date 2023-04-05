@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:WaraShops/data/shop_data.dart';
 import 'package:WaraShops/widgets/widgets.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../dialogs/confirm_dialog.dart';

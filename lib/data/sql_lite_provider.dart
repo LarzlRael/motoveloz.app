@@ -30,34 +30,30 @@ class DBProvider {
         onCreate: (Database db, int version) async {
           await db.execute('CREATE TABLE $tableHistory('
               ' id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,'
-              ' querySearched Text'
+              ' storeName Text,'
+              ' storeUrl Text, '
+              ' storeImageUrl Text'
               ');');
         });
   }
 
-  /* nuevoScan(ScanModel nuevoSCan) async {
-    final db = await database;
-    final res = db.rawInsert(
-        'INSERT Into Scans( tipo, valor) VALUES ( ${nuevoSCan.tipo}, ${nuevoSCan.valor})');
-
-    return res;
-  } */
-  newRaw(HistoryModel historyModel) async {
+  /* hm history model */
+  saveRaw(HistoryModel hm) async {
     final db = await database;
 
     final res = db.rawInsert(
-        'INSERT INTO $tableHistory(querySearched) VALUES ("${historyModel.querySearched}")');
+        'INSERT INTO $tableHistory(storeName,storeUrl,storeImageUrl) VALUES ("${hm.storeName}","${hm.storeUrl}","${hm.storeImageUrl}")');
     return res;
   }
 
 // Select - get info
-  Future<HistoryModel?> getScanId(int id) async {
+  Future<HistoryModel?> getHistoryById(int id) async {
     final db = await database;
-    final res = await db.query('Scans', where: 'id = ?', whereArgs: [id]);
+    final res = await db.query(tableHistory, where: 'id = ?', whereArgs: [id]);
     return res.isNotEmpty ? HistoryModel.fromJson(res.first) : null;
   }
 
-  Future<List<HistoryModel>> getAllScans() async {
+  Future<List<HistoryModel>> getAllHistory() async {
     final db = await database;
     final res = await db.query(tableHistory);
 
@@ -80,7 +76,6 @@ class DBProvider {
     final db = await database;
     final res = await db.update('Scans', nuevoScan.toJson(),
         where: 'id = ?', whereArgs: [nuevoScan.id]);
-
     return res;
   } */
 

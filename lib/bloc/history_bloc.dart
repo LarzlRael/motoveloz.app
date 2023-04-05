@@ -14,13 +14,13 @@ class HistoryBloc {
     // get all scans from database
   }
 
-  newHistory(HistoryModel history) async {
-    await DBProvider.db.newRaw(history);
+  saveHistory(HistoryModel history) async {
+    await DBProvider.db.saveRaw(history);
     getAllHistory();
   }
 
   getAllHistory() async {
-    _scansController.sink.add(await DBProvider.db.getAllScans());
+    _scansController.sink.add(await DBProvider.db.getAllHistory());
   }
 
   deleteHistoryById(int id) async {

@@ -9,6 +9,21 @@ class ShopsListsPage extends StatefulWidget {
 
 class _ShopsListsPageState extends State<ShopsListsPage> {
   @override
+  void initState() {
+    super.initState();
+    _loadStores();
+  }
+
+  final _refreshController = RefreshController();
+  List<StoreModel> _stores = [];
+  Future<void> _loadStores() async {
+    final stores = await StoreServices().getAllStores();
+    setState(() {
+      _stores = stores;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     bool isSwitched = UserPreferences.isDarkTheme;
     final themeChanger = Provider.of<ThemeProvider>(context, listen: true);
@@ -16,6 +31,7 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
     storeServices.saveDeviceId().then((value) => print(value)).catchError((e) {
       print(e);
     });
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -50,40 +66,24 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
         child: Column(
           children: [
             SearchBox(),
-            /* const TitlesSeparator(
-                title: 'Volver a escuchar', moreText: 'MÁS', fontSize: 23), */
             const SizedBox(height: 10),
             Expanded(
-              /* remove shadow */
-
-              /* child: GridView.count(
-                primary: false,
-                /* padding: const EdgeInsets.all(20), */
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                crossAxisCount: 2,
-                children: shopData.map((e) => ShopCard(shopModel: e)).toList(),
-              ), */
-              child: FutureDataWidget(
-                future: StoreServices().getAllStores(),
-                builder: (List<StoreModel> data) {
-                  return GridView.count(
-                      primary: false,
-                      /* padding: const EdgeInsets.all(20), */
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      crossAxisCount: 2,
-                      children: data
-                          .map((e) => ShopCard(
-                                storeModel: e,
-                              ))
-                          .toList());
+              child: SmartRefresher(
+                controller: _refreshController,
+                onRefresh: () async {
+                  await _loadStores();
+                  _refreshController.refreshCompleted();
                 },
-                noResultsWidget: NoResults(
-                  icon: Icons.search_off,
-                  message: 'No hay negocios disponibles',
-                  showButton: false,
-                  iconButton: Icons.search_off,
+                child: GridView.count(
+                  primary: false,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  crossAxisCount: 2,
+                  children: _stores
+                      .map((e) => ShopCard(
+                            storeModel: e,
+                          ))
+                      .toList(),
                 ),
               ),
             ),
