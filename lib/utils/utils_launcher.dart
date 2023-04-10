@@ -16,6 +16,14 @@ void launchURL(String url, {String webComes = ""}) async {
   }
 }
 
+void launchURLString(String url) async {
+  if (await canLaunchUrlString(url)) {
+    await launchUrlString(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
 String convertirString(String input) {
   // Reemplazar el protocolo "https" por "https:"
   String output = input.replaceFirst("whatsapp:", "whatsapp.com");

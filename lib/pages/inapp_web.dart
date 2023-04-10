@@ -50,9 +50,9 @@ class _InappWebState extends State<InappWeb> {
               Container(
                 child: progress < 1.0
                     ? Container(
-                        margin: EdgeInsets.symmetric(vertical: 20),
+                        margin: EdgeInsets.symmetric(vertical: 10),
                         width: 300,
-                        height: 20,
+                        height: 10,
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           child: LinearProgressIndicator(
@@ -72,7 +72,10 @@ class _InappWebState extends State<InappWeb> {
                         (InAppWebViewController controller,
                             String origin) async {
                       return GeolocationPermissionShowPromptResponse(
-                          origin: origin, allow: true, retain: true);
+                        origin: origin,
+                        allow: true,
+                        retain: true,
+                      );
                     },
                     initialUrlRequest:
                         URLRequest(url: Uri.parse(widget.loadWeb.url)),
@@ -83,6 +86,21 @@ class _InappWebState extends State<InappWeb> {
                     onWebViewCreated: (InAppWebViewController controller) {
                       _webViewController = controller;
                     },
+                    onLoadError: (controller, url, code, message) async {
+                      /* _webViewController.goBack(); */
+                      String action = url.toString().split(':').first;
+                      List<String> customActions = [
+                        'tel',
+                        'whatsapp',
+                        'mailto',
+                        'fb',
+                      ];
+                      bool isCustomAction = customActions.contains(action);
+                      if (isCustomAction) {
+                        launchURLString(url.toString());
+                      }
+                    },
+
                     /* onLoadStart: (InAppWebViewController controller, String url) {
                     setState(() {
                       this.url = url;
@@ -94,6 +112,7 @@ class _InappWebState extends State<InappWeb> {
                       this.url = url;
                     });
                   }, */
+
                     onProgressChanged:
                         (InAppWebViewController controller, int progress) {
                       setState(() {
