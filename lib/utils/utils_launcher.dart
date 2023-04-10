@@ -79,7 +79,7 @@ class LoadWeb {
 void goUrlSelected(BuildContext context, LoadWeb loadWeb) {
   Navigator.pushNamed(
     context,
-    'go_url',
+    'web_view',
     arguments: loadWeb,
   );
 }

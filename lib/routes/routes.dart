@@ -11,4 +11,7 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   'go_url': (context) => WebViewPage(
         loadWeb: ModalRoute.of(context)?.settings.arguments as LoadWeb,
       ),
+  'web_view': (context) => InappWeb(
+        loadWeb: ModalRoute.of(context)?.settings.arguments as LoadWeb,
+      ),
 };

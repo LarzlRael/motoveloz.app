@@ -27,16 +27,32 @@ class _WebViewPageState extends State<WebViewPage> {
             });
           },
           onPageStarted: (String url) {},
-          onPageFinished: (String url) {
+          onPageFinished: (String url) async {
             setState(() {
               isLoading = false;
             });
+
+            /* final position = await Geloloca.getCurrentPosition();
+            _updatePositionList(
+              _PositionItemType.position,
+              position.toString(),
+            ); */
+            final position = await Geolocator.getCurrentPosition();
+            /*   final lat = position.latitude;
+            final long = position.longitude;
+            print('latitud: $lat');
+            print('longitud: $long'); */
+
+            await controller.runJavaScript(
+                'navigator.geolocation.getCurrentPosition((position) => {console.log(position)}, (error) => {console.log(error)}, {enableHighAccuracy: true, timeout: 10000, maximumAge: 0, ' +
+                    'coords: {latitude: ' +
+                    position.latitude.toString() +
+                    ', longitude: ' +
+                    position.longitude.toString() +
+                    '}})');
           },
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
-            print("**********");
-            print(request.url);
-            print("**********");
             if (request.url.startsWith('https://www.youtube.com/')) {
               launchURL(
                 request.url,
@@ -100,10 +116,10 @@ class _WebViewPageState extends State<WebViewPage> {
         child: isLoading
             ? Center(
                 child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  /*  Container(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    /*  Container(
                     width: 200,
                     height: 200,
                     decoration: BoxDecoration(
@@ -115,36 +131,37 @@ class _WebViewPageState extends State<WebViewPage> {
                       fit: BoxFit.cover,
                     ),
                   ), */
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(16.0),
-                    child: Hero(
-                      tag: widget.loadWeb.title,
-                      child: Image.network(
-                        widget.loadWeb.imageAsset,
-                        width: 250.0,
-                        height: 200.0,
-                        fit: BoxFit.fill,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(16.0),
+                      child: Hero(
+                        tag: widget.loadWeb.title,
+                        child: Image.network(
+                          widget.loadWeb.imageAsset,
+                          width: 250.0,
+                          height: 200.0,
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
-                  ),
-                  /* const CircularProgressIndicator(), */
-                  const SizedBox(height: 10),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 20),
-                    width: 300,
-                    height: 20,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      child: LinearProgressIndicator(
-                        value: progressLoading / 100,
-                        valueColor:
-                            AlwaysStoppedAnimation<Color>(Color(0xffff5400)),
-                        backgroundColor: Color(0xffD6D6D6),
+                    /* const CircularProgressIndicator(), */
+                    const SizedBox(height: 10),
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 20),
+                      width: 300,
+                      height: 20,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        child: LinearProgressIndicator(
+                          value: progressLoading / 100,
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Color(0xffff5400)),
+                          backgroundColor: Color(0xffD6D6D6),
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              ))
+                    )
+                  ],
+                ),
+              )
             : WillPopScope(
                 child: WebViewWidget(
                   controller: controller,
@@ -158,6 +175,71 @@ class _WebViewPageState extends State<WebViewPage> {
                   }
                 },
               ),
+      ),
+    );
+  }
+}
+
+class LoadingWithLogo extends StatelessWidget {
+  final String title;
+  final String imageAsset;
+  final double progressLoading;
+
+  const LoadingWithLogo({
+    super.key,
+    required this.title,
+    required this.imageAsset,
+    required this.progressLoading,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    print('progressLoading: $progressLoading');
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          /*  Container(
+                    width: 200,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                          10.0), // Ajusta el valor de 10.0 según tus necesidades
+                    ),
+                    child: Image.asset(
+                      widget.loadWeb.title,
+                      fit: BoxFit.cover,
+                    ),
+                  ), */
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16.0),
+            child: Hero(
+              tag: title,
+              child: Image.network(
+                imageAsset,
+                width: 250.0,
+                height: 200.0,
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          /* const CircularProgressIndicator(), */
+          const SizedBox(height: 10),
+          Container(
+            margin: EdgeInsets.symmetric(vertical: 20),
+            width: 300,
+            height: 20,
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              child: LinearProgressIndicator(
+                value: progressLoading,
+                valueColor: AlwaysStoppedAnimation<Color>(Color(0xffff5400)),
+                backgroundColor: Color(0xffD6D6D6),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

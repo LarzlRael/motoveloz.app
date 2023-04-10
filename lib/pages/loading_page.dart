@@ -9,6 +9,7 @@ class _LoadingPageState extends State<LoadingPage> with WidgetsBindingObserver {
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
+    checkLocationPermission(context);
     super.initState();
   }
 

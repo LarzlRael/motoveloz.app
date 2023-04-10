@@ -11,6 +11,7 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
   @override
   void initState() {
     super.initState();
+    checkLocationPermission(context);
     _loadStores();
   }
 
