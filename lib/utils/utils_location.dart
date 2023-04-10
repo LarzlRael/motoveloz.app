@@ -1,6 +1,6 @@
 part of 'utils.dart';
 
-void accespGps(BuildContext context, PermissionStatus status) {
+void accespGpsPermissionRequest(BuildContext context, PermissionStatus status) {
   switch (status) {
     case PermissionStatus.granted:
       return;
@@ -36,8 +36,11 @@ Future<void> checkLocationPermission(BuildContext context) async {
   final status = await Permission.location.request();
   // Aquí puedes llamar a la función accespGps con el status obtenido
   if (!await verifyGpsYLocation(context)) {
-    accespGps(context, status);
-    requestGPSactivation(context, () async {
+    /* Verify the permisions */
+    accespGpsPermissionRequest(context, status);
+
+    /* Verify the GPS */
+    requestGPSactivationDialog(context, () async {
       if (!await Geolocator.isLocationServiceEnabled()) {
         if (await Permission.location.request().isGranted) {
           Geolocator.openLocationSettings();

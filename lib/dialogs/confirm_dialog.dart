@@ -42,7 +42,7 @@ showAlertDialog(
   );
 }
 
-requestGPSactivation(
+requestGPSactivationDialog(
   BuildContext context,
   VoidCallback confirmOnTap,
 ) {
@@ -93,7 +93,7 @@ requestGPSactivation(
             ),
             SimpleText(
               text:
-                  "Para utilizar todas las funciones de esta aplicación, es necesario activar el GPS y permitir el acceso a tu ubicación en segundo plano.",
+                  "Para utilizar todas las funciones de esta aplicación, es necesario activar el GPS.",
               fontSize: 14,
               fontWeight: FontWeight.w400,
               lightColor: Colors.grey[700],
@@ -103,7 +103,7 @@ requestGPSactivation(
             ),
             SimpleText(
               text:
-                  "Funciones que utilizan la ubicación en segundo plano incluyen la búsqueda de negocios cercanos, la navegación paso a paso y las recomendaciones personalizadas basadas en tu ubicación actual",
+                  "Para brindarte un servicio de entrega rápido y preciso, necesitamos acceder a tu ubicación actual. Esto nos permitirá saber dónde realizar la entrega y ofrecerte una experiencia de entrega personalizada. Tu ubicación se utilizará exclusivamente para fines de entrega y no se compartirá con terceros",
               fontSize: 14,
               fontWeight: FontWeight.w400,
               lightColor: Colors.grey[700],
