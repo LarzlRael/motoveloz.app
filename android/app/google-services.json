@@ -33,6 +33,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247140810864:android:435ccc23cfb7da9d28f4b5",
+        "android_client_info": {
+          "package_name": "com.wara.motoVeloz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247140810864-8e8q0tdbvhl97vv99qn5hu462qr1ncrn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkdvGFE7V4Gub6C_6RHaL9wKqxEQbQbm4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247140810864-8e8q0tdbvhl97vv99qn5hu462qr1ncrn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
