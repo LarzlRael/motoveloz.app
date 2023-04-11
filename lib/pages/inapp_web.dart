@@ -70,41 +70,45 @@ class _InappWebState extends State<InappWeb> {
               ),
               Expanded(
                 child: Container(
-                  child: InAppWebView(
-                    androidOnGeolocationPermissionsShowPrompt:
-                        (InAppWebViewController controller,
-                            String origin) async {
-                      return GeolocationPermissionShowPromptResponse(
-                        origin: origin,
-                        allow: true,
-                        retain: true,
-                      );
-                    },
-                    initialUrlRequest:
-                        URLRequest(url: Uri.parse(widget.loadWeb.url)),
-                    initialOptions: InAppWebViewGroupOptions(
-                        crossPlatform: InAppWebViewOptions(
-                            /* debuggingEnabled: true, */
-                            )),
-                    onWebViewCreated: (InAppWebViewController controller) {
-                      _webViewController = controller;
-                    },
-                    onLoadError: (controller, url, code, message) async {
-                      /* _webViewController.goBack(); */
-                      String action = url.toString().split(':').first;
-                      List<String> customActions = [
-                        'tel',
-                        'whatsapp',
-                        'mailto',
-                        'fb',
-                      ];
-                      bool isCustomAction = customActions.contains(action);
-                      if (isCustomAction) {
-                        launchURLString(url.toString());
-                      }
-                    },
+                  child: WillPopScope(
+                    child: InAppWebView(
+                      androidOnGeolocationPermissionsShowPrompt:
+                          (InAppWebViewController controller,
+                              String origin) async {
+                        return GeolocationPermissionShowPromptResponse(
+                          origin: origin,
+                          allow: true,
+                          retain: true,
+                        );
+                      },
+                      initialUrlRequest:
+                          URLRequest(url: Uri.parse(widget.loadWeb.url)),
+                      initialOptions: InAppWebViewGroupOptions(
+                          crossPlatform: InAppWebViewOptions(
+                              /* debuggingEnabled: true, */
+                              )),
+                      onWebViewCreated: (InAppWebViewController controller) {
+                        _webViewController = controller;
+                      },
+                      onLoadError: (controller, url, code, message) async {
+                        /* _webViewController.goBack(); */
+                        await controller.loadUrl(
+                            urlRequest:
+                                URLRequest(url: Uri.parse('about:blank')));
+                        String action = url.toString().split(':').first;
+                        List<String> customActions = [
+                          'tel',
+                          'whatsapp',
+                          'mailto',
+                          'fb',
+                        ];
+                        bool isCustomAction = customActions.contains(action);
+                        if (isCustomAction) {
+                          launchURLString(url.toString());
+                        }
+                      },
 
-                    /* onLoadStart: (InAppWebViewController controller, String url) {
+                      /* onLoadStart: (InAppWebViewController controller, String url) {
                     setState(() {
                       this.url = url;
                     });
@@ -116,11 +120,20 @@ class _InappWebState extends State<InappWeb> {
                     });
                   }, */
 
-                    onProgressChanged:
-                        (InAppWebViewController controller, int progress) {
-                      setState(() {
-                        this.progress = progress / 100;
-                      });
+                      onProgressChanged:
+                          (InAppWebViewController controller, int progress) {
+                        setState(() {
+                          this.progress = progress / 100;
+                        });
+                      },
+                    ),
+                    onWillPop: () async {
+                      if (await _webViewController.canGoBack()) {
+                        await _webViewController.goBack();
+                        return false;
+                      } else {
+                        return true;
+                      }
                     },
                   ),
                 ),

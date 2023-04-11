@@ -16,7 +16,7 @@ void launchURL(String url, {String webComes = ""}) async {
   }
 }
 
-void launchURLString(String url) async {
+Future<void> launchURLString(String url) async {
   if (await canLaunchUrlString(url)) {
     await launchUrlString(url);
   } else {
