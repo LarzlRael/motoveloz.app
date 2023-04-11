@@ -33,11 +33,14 @@ class _InappWebState extends State<InappWeb> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                widget.loadWeb.imageAsset,
-                width: 40,
+            child: Hero(
+              tag: widget.loadWeb.title,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.network(
+                  widget.loadWeb.imageAsset,
+                  width: 40,
+                ),
               ),
             ),
           ),
@@ -52,13 +55,13 @@ class _InappWebState extends State<InappWeb> {
                     ? Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         width: 300,
-                        height: 10,
+                        height: 5,
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           child: LinearProgressIndicator(
                             value: progress,
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                Color(0xffff5400)),
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(primaryColor),
                             backgroundColor: Color(0xffD6D6D6),
                           ),
                         ),

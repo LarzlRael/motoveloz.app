@@ -20,7 +20,7 @@ class ThemeProvider with ChangeNotifier {
     } else {
       isDarkTheme = false;
       _currentTheme = ThemeData.light()
-          .copyWith(appBarTheme: AppBarTheme(color: Color(0xffff5400)));
+          .copyWith(appBarTheme: AppBarTheme(color: primaryColor));
     }
     notifyListeners();
   }
@@ -31,7 +31,7 @@ class ThemeProvider with ChangeNotifier {
     _currentTheme = isDarkModeEnabled
         ? ThemeData.dark()
         : ThemeData.light()
-            .copyWith(appBarTheme: AppBarTheme(color: Color(0xffff5400)));
+            .copyWith(appBarTheme: AppBarTheme(color: primaryColor));
     notifyListeners();
   }
 

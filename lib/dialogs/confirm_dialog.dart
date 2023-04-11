@@ -1,5 +1,7 @@
 import 'package:WaraShops/widgets/widgets.dart';
+import 'package:WaraShops/data/theme_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../utils/utils.dart';
 
@@ -46,7 +48,8 @@ requestGPSactivationDialog(
   BuildContext context,
   VoidCallback confirmOnTap,
 ) {
-  // set up the buttons
+  final isDarkModeEnabled =
+      Provider.of<ThemeProvider>(context, listen: false).isDarkModeEnabled;
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
@@ -122,15 +125,15 @@ requestGPSactivationDialog(
               ),
             ),
             ElevatedButton(
-              child:
-                  Text("Denegar", style: TextStyle(color: Color(0xffff5400))),
+              child: Text("Denegar", style: TextStyle(color: primaryColor)),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black.withOpacity(0.05),
+                backgroundColor:
+                    isDarkModeEnabled ? Colors.grey[800] : Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
                 side: BorderSide(
-                  color: Color(0xffff5400),
+                  color: primaryColor,
                   width: 1,
                 ),
                 padding: EdgeInsets.symmetric(
@@ -142,10 +145,11 @@ requestGPSactivationDialog(
                 Navigator.of(context).pop();
               },
             ),
+            SizedBox(height: 5),
             ElevatedButton(
               child: Text("Continuar"),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xffff5400),
+                backgroundColor: primaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -155,8 +159,8 @@ requestGPSactivationDialog(
                 ),
               ),
               onPressed: () {
-                confirmOnTap();
                 Navigator.of(context).pop();
+                confirmOnTap();
               },
             ),
           ],
@@ -183,6 +187,7 @@ requestGPSactivationDialog(
 
 showDivulgationDialog(BuildContext context) {
   final dialogContext = context;
+
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -206,3 +211,30 @@ showDivulgationDialog(BuildContext context) {
     ),
   );
 }
+
+Widget expandedButton(
+  BuildContext context,
+  String textButton,
+  Color colorButton,
+  Color colorTextButton,
+  void Function()? onPressed,
+) {
+  return Expanded(
+    child: ElevatedButton(
+      child: Text(textButton, style: TextStyle(color: colorTextButton)),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: colorButton,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        padding: EdgeInsets.symmetric(
+          horizontal: 75,
+          vertical: 15,
+        ),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    ),
+  );
+} /* confirmOnTap(); */

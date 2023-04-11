@@ -1,4 +1,5 @@
 /* Database contants */
+
 final databaseName = 'history.db';
 final databaseVersion = 1;
 

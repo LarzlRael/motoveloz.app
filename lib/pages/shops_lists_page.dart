@@ -66,8 +66,10 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
         paddingPage: EdgeInsets.symmetric(horizontal: 8),
         child: Column(
           children: [
-            SearchBox(),
-            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: SearchBox(),
+            ),
             Expanded(
               child: SmartRefresher(
                 controller: _refreshController,
@@ -78,7 +80,7 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
                 child: GridView.count(
                   primary: false,
                   crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
+                  /* mainAxisSpacing: 10, */
                   crossAxisCount: 2,
                   children: _stores
                       .map((e) => ShopCard(

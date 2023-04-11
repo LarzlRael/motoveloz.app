@@ -11,7 +11,6 @@ class ShopCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      /* color: Colors.blue, */
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -46,14 +45,21 @@ class ShopCard extends StatelessWidget {
                   )
                 ],
               ),
-              /* margin: const EdgeInsets.symmetric(vertical: 10), */
             ),
           ),
-          SimpleText(
-            padding: EdgeInsets.symmetric(vertical: 10),
-            text: storeModel.storeName.toUpperCase(),
-            fontWeight: FontWeight.w700,
-            fontSize: 14,
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                storeModel.storeName.toUpperCase(),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
           ),
         ],
       ),

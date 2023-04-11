@@ -154,7 +154,7 @@ class _WebViewPageState extends State<WebViewPage> {
                         child: LinearProgressIndicator(
                           value: progressLoading / 100,
                           valueColor:
-                              AlwaysStoppedAnimation<Color>(Color(0xffff5400)),
+                              AlwaysStoppedAnimation<Color>(primaryColor),
                           backgroundColor: Color(0xffD6D6D6),
                         ),
                       ),
@@ -234,7 +234,7 @@ class LoadingWithLogo extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(10)),
               child: LinearProgressIndicator(
                 value: progressLoading,
-                valueColor: AlwaysStoppedAnimation<Color>(Color(0xffff5400)),
+                valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
                 backgroundColor: Color(0xffD6D6D6),
               ),
             ),
