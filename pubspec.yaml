@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 #!change version in every build
-version: 1.0.4+1
+version: 1.0.5+1
 environment:
   sdk: '>=2.17.6 <3.0.0'
 
@@ -65,15 +65,15 @@ dependencies:
 
 
 flutter_native_splash:
-  color: '#ff5400'
+  color: '#FF8200'
   image: assets/moto_veloz_splash.jpeg
   #branding: assets/branding-development.png
-  color_dark: '#ff5400'
+  color_dark: '#FF8200'
   image_dark: assets/moto_veloz_splash.jpeg
   #branding_dark: assets/branding-development.png
   android_12:
     image: assets/moto_veloz_splash.jpeg
-    icon_background_color: '#ff5400'
+    icon_background_color: '#FF8200'
     image_dark: assets/moto_veloz_splash.jpeg
     icon_background_color_dark: '#ffffff'
 
