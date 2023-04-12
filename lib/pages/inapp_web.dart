@@ -92,9 +92,13 @@ class _InappWebState extends State<InappWeb> {
                       },
                       onLoadError: (controller, url, code, message) async {
                         /* _webViewController.goBack(); */
-                        await controller.loadUrl(
-                            urlRequest:
-                                URLRequest(url: Uri.parse(widget.loadWeb.url)));
+
+                       /*  await controller.loadUrl(
+                          urlRequest: URLRequest(
+                            url: Uri.parse(widget.loadWeb.url),
+                          ),
+                        ); */
+                        Navigator.pushReplacementNamed(context, 'loading_page');
                         String action = url.toString().split(':').first;
                         List<String> customActions = [
                           'tel',
