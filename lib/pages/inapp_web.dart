@@ -94,7 +94,7 @@ class _InappWebState extends State<InappWeb> {
                         /* _webViewController.goBack(); */
                         await controller.loadUrl(
                             urlRequest:
-                                URLRequest(url: Uri.parse('about:blank')));
+                                URLRequest(url: Uri.parse(widget.loadWeb.url)));
                         String action = url.toString().split(':').first;
                         List<String> customActions = [
                           'tel',

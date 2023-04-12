@@ -89,27 +89,21 @@ class SearchShopStoreDelegate extends SearchDelegate {
     );
   }
 
-  ListView listViewItems(List<StoreModel> suggestionList) {
-    return ListView.builder(
-      itemCount: suggestionList.length,
-      itemBuilder: (context, i) {
-        return renderItemList(context, suggestionList[i], true);
-      },
-    );
-  }
-
   ListView listViewBlocHistory(List<HistoryModel> historyList) {
     return ListView.builder(
       itemCount: historyList.length,
       itemBuilder: (context, i) {
         return ListTile(
           leading: const Icon(Icons.history),
-          trailing: ClipRRect(
-            borderRadius: BorderRadius.circular(5),
-            child: Image.network(
-              historyList[i].storeImageUrl,
-              width: 40,
-              height: 40,
+          trailing: Hero(
+            tag: historyList[i].storeName,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: Image.network(
+                historyList[i].storeImageUrl,
+                width: 40,
+                height: 40,
+              ),
             ),
           ),
           title: Text(historyList[i].storeName.toTitleCase()),
@@ -142,10 +136,16 @@ class SearchShopStoreDelegate extends SearchDelegate {
       itemCount: suggestionList.length,
       itemBuilder: (context, i) {
         return ListTile(
-          leading: ClipRRect(
-            borderRadius: BorderRadius.circular(5),
-            child: Image.network(suggestionList[i].imageUrl,
-                width: sizeImage, height: sizeImage),
+          leading: Hero(
+            tag: suggestionList[i].storeName,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: Image.network(
+                suggestionList[i].imageUrl,
+                width: sizeImage,
+                height: sizeImage,
+              ),
+            ),
           ),
           title: Text(suggestionList[i].storeName.toTitleCase()),
           onTap: () {
@@ -164,69 +164,6 @@ class SearchShopStoreDelegate extends SearchDelegate {
               ),
             );
           },
-        );
-      },
-    );
-  }
-
-  Widget renderItemList(
-      BuildContext context, StoreModel suggestionItem, bool registerHistory) {
-    final double sizeImage = 40;
-    if (!registerHistory) {
-      return ListTile(
-        leading: const Icon(Icons.history),
-        trailing: ClipRRect(
-          borderRadius: BorderRadius.circular(5),
-          child: Image.network(
-            suggestionItem.imageUrl,
-            width: sizeImage,
-            height: sizeImage,
-          ),
-        ),
-        title: Text(suggestionItem.storeName.toTitleCase()),
-        onLongPress: () => showAlertDialog(
-            context,
-            "Eliminar de historial",
-            SimpleText(
-                text:
-                    "¿Desea eliminar ${suggestionItem.storeName.toTitleCase()} de su historial?"),
-            () async {
-          /* await historyBloc.deleteHistoryById(suggestionItem.id); */
-          historyBloc.getAllHistory();
-        }),
-        onTap: () => goUrlSelected(
-          context,
-          LoadWeb(
-            title: suggestionItem.storeName,
-            url: suggestionItem.storeUrl,
-            imageAsset: suggestionItem.imageUrl,
-          ),
-        ),
-      );
-    }
-    return ListTile(
-      leading: ClipRRect(
-        borderRadius: BorderRadius.circular(5),
-        child: Image.network(suggestionItem.imageUrl,
-            width: sizeImage, height: sizeImage),
-      ),
-      title: Text(suggestionItem.storeName.toTitleCase()),
-      onTap: () {
-        if (registerHistory) {
-          historyBloc.saveHistory(HistoryModel(
-            storeName: suggestionItem.storeName,
-            storeUrl: suggestionItem.storeUrl,
-            storeImageUrl: suggestionItem.imageUrl,
-          ));
-        }
-
-        goUrlSelected(
-          context,
-          LoadWeb(
-            title: suggestionItem.storeName,
-            url: suggestionItem.storeUrl,
-            imageAsset: suggestionItem.imageUrl,
-          ),
         );
       },
     );
