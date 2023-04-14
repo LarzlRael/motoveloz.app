@@ -15,11 +15,13 @@ class ResultBloc {
     // get all scans from database
   }
 
-  getSearchStore(String query) async {
-    if (!query.isEmpty) {
-      _resultController.sink.add(await StoreServices().getSearchStores(query));
-    } else {
+  Future<List<StoreModel>> getSearchStore(String query) async {
+    if (query.isEmpty) {
       _resultController.sink.add(await StoreServices().getAllStores());
+      return [];
+    } else {
+      _resultController.sink.add(await StoreServices().getSearchStores(query));
+      return await StoreServices().getSearchStores(query);
     }
   }
 

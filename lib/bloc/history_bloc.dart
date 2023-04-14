@@ -37,7 +37,7 @@ class HistoryBloc {
 
   final _scansController = StreamController<List<HistoryModel>>.broadcast();
 
-  Stream<List<HistoryModel>> get scansStream => _scansController.stream;
+  Stream<List<HistoryModel>> get historyStream => _scansController.stream;
   /* Stream<List<ScanModel>> get scansStreamHttp =>
       _scansController.stream.transform(validarHttp);  */
   dispose() {

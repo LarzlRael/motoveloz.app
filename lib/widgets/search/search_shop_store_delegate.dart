@@ -4,19 +4,12 @@ class SearchShopStoreDelegate extends SearchDelegate {
   HistoryBloc historyBloc = HistoryBloc();
   ResultBloc resultBloc = ResultBloc();
 
+  final SearchProvider searchProvider;
+
   @override
-  /* final String searchFieldLabel; */
+  String get searchFieldLabel => 'Buscar tienda por nombre';
 
-  /* SearchShopStoreDelegate() : searchFieldLabel = 'Buscar por nombre'; */
-  late final Debouncer<String> _debouncer;
-
-  SearchShopStoreDelegate() {
-    _debouncer = Debouncer<String>(
-      const Duration(milliseconds: 500),
-      initialValue: '',
-      onChanged: (query) => _search(query),
-    );
-  }
+  Timer? debouncerTimer;
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -25,16 +18,26 @@ class SearchShopStoreDelegate extends SearchDelegate {
     ];
   }
 
+  SearchShopStoreDelegate(this.searchProvider) {}
+
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
-        onPressed: () => close(context, null),
-        icon: const Icon(Icons.arrow_back_ios));
+      onPressed: () => {
+        close(context, null),
+        /* cleanStreams(), */
+      },
+      icon: const Icon(
+        Icons.arrow_back_ios,
+      ),
+    );
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    resultBloc.getSearchStore(query);
+    query = searchProvider.getQuerySearched;
+    _onQueryChanged(context, query);
+    /* resultBloc.getSearchStore(query); */
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -64,7 +67,7 @@ class SearchShopStoreDelegate extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     historyBloc.getAllHistory();
-
+    _onQueryChanged(context, query);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -74,16 +77,28 @@ class SearchShopStoreDelegate extends SearchDelegate {
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             text: 'Historial de busquedas'),
         Expanded(
-          child: StreamDataWidget<List<HistoryModel>>(
-            stream: historyBloc.scansStream,
-            builder: (data) => listViewBlocHistory(data),
-            noResultsWidget: NoResults(
-              icon: Icons.history,
-              message: 'No hay historial de busquedas',
-              showButton: false,
-              iconButton: Icons.search_off,
-            ),
-          ),
+          child: query.isEmpty
+              ? StreamDataWidget<List<HistoryModel>>(
+                  stream: historyBloc.historyStream,
+                  builder: (data) => listViewBlocHistory(data),
+                  noResultsWidget: NoResults(
+                    icon: Icons.history,
+                    message: 'No hay historial de busquedas',
+                    showButton: false,
+                    iconButton: Icons.search_off,
+                  ),
+                )
+              : StreamDataWidget<List<StoreModel>>(
+                  initialData: searchProvider.getStores,
+                  stream: resultBloc.resulStream,
+                  builder: (data) => listViewSuggestResult(data),
+                  noResultsWidget: NoResults(
+                    icon: Icons.history,
+                    message: 'No hay historial de busquedas',
+                    showButton: false,
+                    iconButton: Icons.search_off,
+                  ),
+                ),
         )
       ],
     );
@@ -169,7 +184,22 @@ class SearchShopStoreDelegate extends SearchDelegate {
     );
   }
 
-  Future<void> _search(String query) async {
-    resultBloc.getSearchStore(query);
+  void _onQueryChanged(BuildContext context, String query) {
+    final searchProvider = Provider.of<SearchProvider>(context, listen: false);
+    if (debouncerTimer?.isActive ?? false) debouncerTimer!.cancel();
+
+    debouncerTimer = Timer(Duration(milliseconds: 500), () async {
+      print(query);
+      if (query.isEmpty) {
+        return;
+      }
+      searchProvider.setQuerySearched = query;
+      searchProvider.setStores = await resultBloc.getSearchStore(query);
+    });
+  }
+
+  void cleanStreams() {
+    historyBloc.dispose();
+    resultBloc.dispose();
   }
 }

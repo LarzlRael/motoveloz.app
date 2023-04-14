@@ -1,4 +1,4 @@
-part of 'utils.dart';
+part of './providers.dart';
 
 class ThemeProvider with ChangeNotifier {
   bool _isDarkModeEnabled = false;

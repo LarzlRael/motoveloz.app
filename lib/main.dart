@@ -1,4 +1,5 @@
 import 'package:WaraShops/data/constants.dart';
+import 'package:WaraShops/provider/providers.dart';
 import 'package:WaraShops/services/services.dart';
 import 'package:WaraShops/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +24,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appTheme = Provider.of<ThemeProvider>(context).getCurrentTheme;
-    return MaterialApp(
-      routes: appRoutes,
-      debugShowCheckedModeBanner: false,
-      title: appName,
-      theme: appTheme,
-      initialRoute: 'list_shops',
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => SearchProvider()),
+      ],
+      child: MaterialApp(
+        routes: appRoutes,
+        debugShowCheckedModeBanner: false,
+        title: appName,
+        theme: appTheme,
+        initialRoute: 'list_shops',
+      ),
     );
   }
 }

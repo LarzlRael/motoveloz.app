@@ -55,7 +55,7 @@ class DBProvider {
 
   Future<List<HistoryModel>> getAllHistory() async {
     final db = await database;
-    final res = await db.query(tableHistory);
+    final res = await db.query(tableHistory, orderBy: 'id DESC', limit: 20);
 
     List<HistoryModel> list =
         res.isNotEmpty ? res.map((c) => HistoryModel.fromJson(c)).toList() : [];

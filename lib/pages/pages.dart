@@ -15,9 +15,9 @@ import 'package:permission_handler/permission_handler.dart';
 import 'dart:async';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../helpers/helpers.dart';
+import '../provider/providers.dart';
 import '../utils/utils.dart';
 
 part 'shops_lists_page.dart';

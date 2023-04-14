@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:WaraShops/dialogs/confirm_dialog.dart';
+import 'package:WaraShops/provider/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:WaraShops/bloc/history_bloc.dart';
 import 'package:WaraShops/bloc/result_bloc.dart';
@@ -7,9 +10,9 @@ import 'package:WaraShops/utils/utils.dart';
 
 /* import 'package:url_launcher/url_launcher_string.dart'; */
 import 'package:async/async.dart';
+import 'package:provider/provider.dart';
 import '../models/models.dart';
 import '../services/services.dart';
-import 'package:debounce_throttle/debounce_throttle.dart';
 part 'simple_text.dart';
 part 'shop_card.dart';
 part 'page_container.dart';
