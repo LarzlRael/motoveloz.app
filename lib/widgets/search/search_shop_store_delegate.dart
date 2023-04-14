@@ -7,7 +7,7 @@ class SearchShopStoreDelegate extends SearchDelegate {
   final SearchProvider searchProvider;
 
   @override
-  String get searchFieldLabel => 'Buscar tienda por nombre';
+  String get searchFieldLabel => 'Buscar';
 
   Timer? debouncerTimer;
 
