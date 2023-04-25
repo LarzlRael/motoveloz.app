@@ -26,3 +26,4 @@ part 'acceso_gps_page.dart';
 part 'loading_page.dart';
 part 'inapp_web.dart';
 part 'action.dart';
+part 'welcome_page.dart';

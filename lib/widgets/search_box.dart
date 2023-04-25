@@ -7,7 +7,7 @@ class SearchBox extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkTheme = UserPreferences.isDarkTheme;
     final size = MediaQuery.of(context).size;
-    final searchProvider = Provider.of<SearchProvider>(context);
+    /* final searchProvider = Provider.of<SearchProvider>(context); */
     return Container(
         width: size.width,
         margin: const EdgeInsets.symmetric(vertical: 5),
@@ -16,12 +16,12 @@ class SearchBox extends StatelessWidget {
         ),
         child: GestureDetector(
           onTap: () {
-            showSearch(
+            /* showSearch(
                 context: context,
                 query: searchProvider.getQuerySearched,
                 delegate: SearchShopStoreDelegate(
                   searchProvider,
-                ));
+                )); */
           },
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
