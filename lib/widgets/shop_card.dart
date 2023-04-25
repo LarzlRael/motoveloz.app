@@ -9,6 +9,7 @@ class ShopCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textStyle = Theme.of(context).textTheme.bodyMedium;
     final size = MediaQuery.of(context).size;
     return Container(
       child: Column(
@@ -54,10 +55,7 @@ class ShopCard extends StatelessWidget {
                 storeModel.storeName.toUpperCase(),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: textStyle,
               ),
             ),
           ),

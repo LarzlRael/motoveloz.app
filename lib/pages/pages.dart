@@ -26,6 +26,6 @@ part 'shops_lists_page.dart';
 part 'web_view_page.dart';
 part 'acceso_gps_page.dart';
 part 'loading_page.dart';
-part 'inapp_web.dart';
+part 'inapp_web_page.dart';
 part 'action.dart';
 part 'welcome_page.dart';

@@ -1,14 +1,14 @@
 part of 'pages.dart';
 
-class InappWeb extends StatefulWidget {
-  const InappWeb({super.key, required this.loadWeb});
+class InappWebPage extends StatefulWidget {
+  const InappWebPage({super.key, required this.loadWeb});
 
   @override
-  State<InappWeb> createState() => _InappWebState();
+  State<InappWebPage> createState() => _InappWebPageState();
   final LoadWeb loadWeb;
 }
 
-class _InappWebState extends State<InappWeb> {
+class _InappWebPageState extends State<InappWebPage> {
   late InAppWebViewController _webViewController;
   String url = "";
   double progress = 0;
@@ -60,13 +60,11 @@ class _InappWebState extends State<InappWeb> {
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           child: LinearProgressIndicator(
                             value: progress,
-                            valueColor:
-                                AlwaysStoppedAnimation<Color>(primaryColor),
                             backgroundColor: Color(0xffD6D6D6),
                           ),
                         ),
                       )
-                    : Container(),
+                    : SizedBox(),
               ),
               Expanded(
                 child: Container(
@@ -93,7 +91,7 @@ class _InappWebState extends State<InappWeb> {
                       onLoadError: (controller, url, code, message) async {
                         /* _webViewController.goBack(); */
 
-                       /*  await controller.loadUrl(
+                        /*  await controller.loadUrl(
                           urlRequest: URLRequest(
                             url: Uri.parse(widget.loadWeb.url),
                           ),
@@ -126,8 +124,9 @@ class _InappWebState extends State<InappWeb> {
 
                       onProgressChanged:
                           (InAppWebViewController controller, int progress) {
+                        print(progress);
                         setState(() {
-                          this.progress = progress / 100;
+                          this.progress = (progress / 100);
                         });
                       },
                     ),

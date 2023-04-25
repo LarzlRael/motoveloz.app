@@ -49,8 +49,8 @@ requestGPSactivationDialog(
   BuildContext context,
   VoidCallback confirmOnTap,
 ) {
-  final isDarkModeEnabled =
-      context.read<ThemeProviderNotifier>().isDarkModeEnabled;
+  /* final isDarkModeEnabled =
+      context.read<ThemeProviderNotifier>().isDarkModeEnabled; */
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
@@ -125,11 +125,11 @@ requestGPSactivationDialog(
                 vertical: 8,
               ),
             ),
-            ElevatedButton(
-              child: Text("Denegar", style: TextStyle(color: primaryColor)),
-              style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    isDarkModeEnabled ? Colors.grey[800] : Colors.white,
+            TextButton(
+              child: Text("Denegar"),
+              /* style: ElevatedButton.styleFrom(
+                /* backgroundColor:
+                    isDarkModeEnabled ? Colors.grey[800] : Colors.white, */
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -141,16 +141,15 @@ requestGPSactivationDialog(
                   horizontal: 75,
                   vertical: 15,
                 ),
-              ),
+              ), */
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             SizedBox(height: 5),
-            ElevatedButton(
+            FilledButton(
               child: Text("Continuar"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: primaryColor,
+              /*  style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -158,7 +157,7 @@ requestGPSactivationDialog(
                   horizontal: 75,
                   vertical: 15,
                 ),
-              ),
+              ), */
               onPressed: () {
                 Navigator.of(context).pop();
                 confirmOnTap();

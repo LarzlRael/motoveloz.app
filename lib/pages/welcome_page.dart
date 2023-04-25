@@ -24,17 +24,17 @@ class WelcomePage extends StatelessWidget {
                   secondaryBullet: 10.0,
                   slides: [
                     SlideItem(
-                        assetImage: 'assets/moto_veloz_logo.jpeg',
+                        assetImage: 'assets/1.png',
                         title: "¿Bloqueado y con muchas prácticas?",
                         subtitle:
                             "En nivel de dificultad no es un problema en subastareas"),
                     SlideItem(
-                        assetImage: 'assets/moto_veloz_logo.jpeg',
+                        assetImage: 'assets/2.png',
                         title: "¿Sabes la respuesta?",
                         subtitle:
                             "Ayuda con la tarea propuesta y gana dinero por ello"),
                     SlideItem(
-                        assetImage: 'assets/moto_veloz_logo.jpeg',
+                        assetImage: 'assets/3.png',
                         title: "Tareas de todas las materias",
                         subtitle:
                             "Porque enseñar también es una manera de aprender"),

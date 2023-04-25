@@ -31,11 +31,11 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
   @override
   Widget build(BuildContext context) {
     bool isDarkThemeActive = UserPreferences.isDarkTheme;
-    final searchProvider = Provider.of<SearchProvider>(context);
+    final searchProvider = context.read<SearchProvider>();
     final themeChanger =
         Provider.of<ThemeProviderNotifier>(context, listen: true);
     StoreServices storeServices = StoreServices();
-    storeServices.saveDeviceId().then((value) => print(value)).catchError((e) {
+    storeServices.saveDeviceId().then((value) => {}).catchError((e) {
       print(e);
     });
 
@@ -57,16 +57,6 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
         ]),
         actions: [
           IconButton(
-              onPressed: () {
-                showSearch(
-                    context: context,
-                    query: searchProvider.getQuerySearched,
-                    delegate: SearchShopStoreDelegate(
-                      searchProvider,
-                    ));
-              },
-              icon: Icon(Icons.search)),
-          IconButton(
             onPressed: () {
               UserPreferences.isDarkTheme = !isDarkThemeActive;
               themeChanger.toggleTheme();
@@ -81,6 +71,17 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
                 /* themeChanger.setDarkTheme = isSwitched; */
               });
             }, */
+          ),
+          IconButton(
+            onPressed: () {
+              showSearch(
+                  context: context,
+                  query: searchProvider.getQuerySearched,
+                  delegate: SearchShopStoreDelegate(
+                    searchProvider,
+                  ));
+            },
+            icon: Icon(Icons.search),
           ),
         ],
       ),

@@ -26,9 +26,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /* final appTheme = Provider.of<ThemeProvider>(context).getCurrentTheme; */
-    final appTheme = context.read<ThemeProviderNotifier>().appTheme;
-    /* final AppTheme appTheme = ref.watch(themeNotifierProvider); */
+    final appTheme = context.watch<ThemeProviderNotifier>().appTheme;
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SearchProvider()),
