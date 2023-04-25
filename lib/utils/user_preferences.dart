@@ -14,6 +14,7 @@ class UserPreferences {
   }
 
   static bool get isFirstTime => _prefs.getBool('isFirstTime') ?? false;
+
   static set isFirstTime(bool value) {
     _prefs.setBool('isFirstTime', value);
   }

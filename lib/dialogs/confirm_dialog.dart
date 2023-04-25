@@ -1,6 +1,7 @@
 import 'package:WaraShops/widgets/widgets.dart';
 import 'package:WaraShops/data/theme_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../provider/providers.dart';
 import '../utils/utils.dart';
@@ -48,8 +49,8 @@ requestGPSactivationDialog(
   BuildContext context,
   VoidCallback confirmOnTap,
 ) {
-  /* TODO */
-  final isDarkModeEnabled = true;
+  final isDarkModeEnabled =
+      context.read<ThemeProviderNotifier>().isDarkModeEnabled;
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(

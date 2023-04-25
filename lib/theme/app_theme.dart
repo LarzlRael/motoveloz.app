@@ -31,11 +31,6 @@ class AppTheme {
         appBarTheme: const AppBarTheme(
           centerTitle: false,
         ),
-      ).copyWith(
-        colorScheme: ThemeData().colorScheme.copyWith(
-              secondary: colorList[selectedColor],
-              primary: colorList[1],
-            ),
       );
   AppTheme copyWith({
     int? selectedColor,

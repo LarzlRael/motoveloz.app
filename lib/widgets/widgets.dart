@@ -19,3 +19,6 @@ part 'search/search_shop_store_delegate.dart';
 part 'no_results.dart';
 part 'results/stream_data_widget.dart';
 part 'buttons/button_with_icon.dart';
+
+part 'slideshow/slideshow.dart';
+part 'slideshow/slide_item.dart';

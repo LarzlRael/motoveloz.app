@@ -1,41 +1,26 @@
 part of './providers.dart';
 
-class ThemeProvider with ChangeNotifier {
-  bool _isDarkModeEnabled = false;
-  bool notifications = false;
-  int _currentHomeworksTabIndex = 0;
-  late ThemeData _currentTheme;
+class ThemeProviderNotifier extends ChangeNotifier {
+  /* STATE = estado => new AppTheme */
+  AppTheme _appTheme = AppTheme(
+    isDarkMode: UserPreferences.isDarkTheme,
+  ); // Estado interno
 
-  int get getCurrentHomeworksTabIndex => _currentHomeworksTabIndex;
-  set setCurrentHomeworksTabIndex(int value) {
-    _currentHomeworksTabIndex = value;
+  AppTheme get appTheme => _appTheme; // Acceso al estado
+  bool get isDarkModeEnabled => _appTheme
+      .isDarkMode; // Propiedad para verificar si el tema oscuro está habilitado o no
+
+  bool _isLastPageSlider = false;
+  bool get isLastPageSlider => _isLastPageSlider;
+  set isLastPageSlider(bool value) {
+    _isLastPageSlider = value;
     notifyListeners();
   }
 
-  get getCurrentTheme => _currentTheme;
-  ThemeProvider(bool isDarkTheme) {
-    if (isDarkTheme) {
-      _currentTheme = ThemeData.dark();
-      isDarkTheme = true;
-    } else {
-      isDarkTheme = false;
-      _currentTheme = ThemeData.light()
-          .copyWith(appBarTheme: AppBarTheme(color: primaryColor));
-    }
-    notifyListeners();
-  }
-
-  bool get isDarkModeEnabled => _isDarkModeEnabled;
-  set setDarkTheme(bool value) {
-    _isDarkModeEnabled = value;
-    _currentTheme = isDarkModeEnabled
-        ? ThemeData.dark()
-        : ThemeData.light()
-            .copyWith(appBarTheme: AppBarTheme(color: primaryColor));
-    notifyListeners();
-  }
-
-  ThemeData getTheme() {
-    return _isDarkModeEnabled ? ThemeData.dark() : ThemeData.light();
+  void toggleTheme() {
+    _appTheme = _appTheme.copyWith(
+      isDarkMode: !_appTheme.isDarkMode,
+    );
+    notifyListeners(); // Notificar a los oyentes del cambio de estado
   }
 }

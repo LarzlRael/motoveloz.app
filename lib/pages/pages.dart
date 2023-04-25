@@ -3,6 +3,8 @@ import 'package:WaraShops/data/constants.dart';
 import 'package:WaraShops/data/theme_colors.dart';
 import 'package:WaraShops/models/models.dart';
 import 'package:WaraShops/services/services.dart';
+import 'package:animate_do/animate_do.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 

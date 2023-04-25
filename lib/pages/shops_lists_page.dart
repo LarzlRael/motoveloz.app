@@ -26,8 +26,10 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isSwitched = UserPreferences.isDarkTheme;
-    final themeChanger = Provider.of<ThemeProvider>(context, listen: true);
+    bool isDarkThemeActive = UserPreferences.isDarkTheme;
+    final searchProvider = Provider.of<SearchProvider>(context);
+    final themeChanger =
+        Provider.of<ThemeProviderNotifier>(context, listen: true);
     StoreServices storeServices = StoreServices();
     storeServices.saveDeviceId().then((value) => print(value)).catchError((e) {
       print(e);
@@ -50,26 +52,42 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
           const Text(appName)
         ]),
         actions: [
-          Switch(
-            value: isSwitched,
-            onChanged: (value) {
+          IconButton(
+              onPressed: () {
+                showSearch(
+                    context: context,
+                    query: searchProvider.getQuerySearched,
+                    delegate: SearchShopStoreDelegate(
+                      searchProvider,
+                    ));
+              },
+              icon: Icon(Icons.search)),
+          IconButton(
+            onPressed: () {
+              UserPreferences.isDarkTheme = !isDarkThemeActive;
+              themeChanger.toggleTheme();
+            },
+            icon: isDarkThemeActive
+                ? const Icon(Icons.dark_mode)
+                : const Icon(Icons.light_mode),
+
+            /* onChanged: (value) {
               setState(() {
                 isSwitched = value;
-                UserPreferences.isDarkTheme = isSwitched;
-                themeChanger.setDarkTheme = isSwitched;
+                /* themeChanger.setDarkTheme = isSwitched; */
               });
-            },
+            }, */
           ),
         ],
       ),
       body: PageContainer(
-        paddingPage: EdgeInsets.symmetric(horizontal: 8),
+        paddingPage: EdgeInsets.fromLTRB(8, 8, 8, 0),
         child: Column(
           children: [
-            Padding(
+            /* Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: SearchBox(),
-            ),
+            ), */
             Expanded(
               child: SmartRefresher(
                 controller: _refreshController,

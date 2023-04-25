@@ -5,6 +5,7 @@ import '../utils/utils.dart';
 
 final Map<String, Widget Function(BuildContext)> appRoutes = {
   /* Register and login  */
+  'welcome': (_) => WelcomePage(),
   'list_shops': (_) => ShopsListsPage(),
   'gps_request': (_) => AccesoGpsPage(),
   'loading_page': (_) => LoadingPage(),
