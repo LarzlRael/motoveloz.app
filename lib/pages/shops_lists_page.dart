@@ -16,12 +16,16 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
   }
 
   final _refreshController = RefreshController();
+  bool isLoading = false;
   List<StoreModel> _stores = [];
   Future<void> _loadStores() async {
+    isLoading = true;
+    setState(() {});
     final stores = await StoreServices().getAllStores();
-    setState(() {
-      _stores = stores;
-    });
+
+    isLoading = false;
+    _stores = stores;
+    setState(() {});
   }
 
   @override
@@ -89,24 +93,26 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
               child: SearchBox(),
             ), */
             Expanded(
-              child: SmartRefresher(
-                controller: _refreshController,
-                onRefresh: () async {
-                  await _loadStores();
-                  _refreshController.refreshCompleted();
-                },
-                child: GridView.count(
-                  primary: false,
-                  crossAxisSpacing: 10,
-                  /* mainAxisSpacing: 10, */
-                  crossAxisCount: 2,
-                  children: _stores
-                      .map((e) => ShopCard(
-                            storeModel: e,
-                          ))
-                      .toList(),
-                ),
-              ),
+              child: isLoading
+                  ? Center(child: const CircularProgressIndicator())
+                  : SmartRefresher(
+                      controller: _refreshController,
+                      onRefresh: () async {
+                        await _loadStores();
+                        _refreshController.refreshCompleted();
+                      },
+                      child: GridView.count(
+                        primary: false,
+                        crossAxisSpacing: 10,
+                        /* mainAxisSpacing: 10, */
+                        crossAxisCount: 2,
+                        children: _stores
+                            .map((e) => ShopCard(
+                                  storeModel: e,
+                                ))
+                            .toList(),
+                      ),
+                    ),
             ),
           ],
         ),

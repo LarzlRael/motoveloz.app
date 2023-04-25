@@ -22,9 +22,9 @@ class SlideItem extends StatelessWidget {
           height: 250,
           width: 250,
         ),
-        SizedBox(height: 5),
+        SizedBox(height: 15),
         Text(title, style: titleStyle, textAlign: TextAlign.center),
-        SizedBox(height: 5),
+        SizedBox(height: 10),
         Text(title, style: captionStyle, textAlign: TextAlign.center),
       ],
     );
