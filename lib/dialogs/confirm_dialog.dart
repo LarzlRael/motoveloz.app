@@ -125,43 +125,48 @@ requestGPSactivationDialog(
                 vertical: 8,
               ),
             ),
-            TextButton(
-              child: Text("Denegar"),
-              /* style: ElevatedButton.styleFrom(
-                /* backgroundColor:
-                    isDarkModeEnabled ? Colors.grey[800] : Colors.white, */
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                side: BorderSide(
-                  color: primaryColor,
-                  width: 1,
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: 75,
-                  vertical: 15,
-                ),
-              ), */
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+            SizedBox(
+              child: TextButton(
+                child: Text("Denegar"),
+                /* style: ElevatedButton.styleFrom(
+                  /* backgroundColor:
+                      isDarkModeEnabled ? Colors.grey[800] : Colors.white, */
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  side: BorderSide(
+                    color: primaryColor,
+                    width: 1,
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 75,
+                    vertical: 15,
+                  ),
+                ), */
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
             ),
             SizedBox(height: 5),
-            FilledButton(
-              child: Text("Continuar"),
-              /*  style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: 75,
-                  vertical: 15,
-                ),
-              ), */
-              onPressed: () {
-                Navigator.of(context).pop();
-                confirmOnTap();
-              },
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton(
+                child: Text("Continuar"),
+                /*  style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 75,
+                    vertical: 15,
+                  ),
+                ), */
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  confirmOnTap();
+                },
+              ),
             ),
           ],
         ),
