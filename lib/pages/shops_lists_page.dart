@@ -46,7 +46,7 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
             child: Image.asset(
-              'assets/moto_veloz_logo.jpeg',
+              logoImage,
               width: 30,
               height: 30,
               fit: BoxFit.cover,
@@ -75,11 +75,12 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
           IconButton(
             onPressed: () {
               showSearch(
-                  context: context,
-                  query: searchProvider.getQuerySearched,
-                  delegate: SearchShopStoreDelegate(
-                    searchProvider,
-                  ));
+                context: context,
+                query: searchProvider.getQuerySearched,
+                delegate: SearchShopStoreDelegate(
+                  searchProvider,
+                ),
+              );
             },
             icon: Icon(Icons.search),
           ),
@@ -110,6 +111,16 @@ class _ShopsListsPageState extends State<ShopsListsPage> {
                         children: _stores
                             .map((e) => ShopCard(
                                   storeModel: e,
+                                  selected: (storeModel) {
+                                    goUrlSelected(
+                                      context,
+                                      LoadWeb(
+                                        title: storeModel.storeName,
+                                        url: storeModel.storeUrl,
+                                        imageAsset: storeModel.imageUrl,
+                                      ),
+                                    );
+                                  },
                                 ))
                             .toList(),
                       ),

@@ -27,17 +27,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appTheme = context.watch<ThemeProviderNotifier>().appTheme;
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SearchProvider()),
       ],
-      child: MaterialApp(
-        routes: appRoutes,
+      child: MaterialApp.router(
+        routerConfig: appRouter,
         debugShowCheckedModeBanner: false,
         title: appName,
         theme: appTheme.getTheme(),
-        initialRoute: 'welcome',
       ),
     );
   }

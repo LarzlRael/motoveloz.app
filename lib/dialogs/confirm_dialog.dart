@@ -1,6 +1,7 @@
 import 'package:WaraShops/widgets/widgets.dart';
 import 'package:WaraShops/data/theme_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/providers.dart';
@@ -16,7 +17,7 @@ showAlertDialog(
   Widget cancelButton = TextButton(
     child: Text("Cancelar"),
     onPressed: () {
-      Navigator.of(context).pop();
+      context.pop();
     },
   );
   Widget continueButton = TextButton(
@@ -24,7 +25,7 @@ showAlertDialog(
     onPressed: () {
       /* TODO onclickByArgument */
       confirmOnTap();
-      Navigator.of(context).pop();
+      context.pop();
     },
   );
   // set up the AlertDialog
@@ -143,9 +144,7 @@ requestGPSactivationDialog(
                     vertical: 15,
                   ),
                 ), */
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                onPressed: context.pop,
               ),
             ),
             SizedBox(height: 5),
@@ -163,7 +162,7 @@ requestGPSactivationDialog(
                   ),
                 ), */
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  context.pop();
                   confirmOnTap();
                 },
               ),
@@ -203,14 +202,13 @@ showDivulgationDialog(BuildContext context) {
         TextButton(
           child: Text("Aceptar"),
           onPressed: () async {
-            Navigator.of(context).pop();
-
+            context.pop();
             await checkLocationPermission(dialogContext);
           },
         ),
         TextButton(
           child: Text("Cancelar"),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: context.pop,
         ),
       ],
     ),
@@ -238,7 +236,7 @@ Widget expandedButton(
         ),
       ),
       onPressed: () {
-        Navigator.of(context).pop();
+        context.pop();
       },
     ),
   );

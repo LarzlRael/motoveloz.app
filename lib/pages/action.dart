@@ -91,9 +91,7 @@ class ActionPage extends StatelessWidget {
                           vertical: 15,
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
+                      onPressed: context.pop,
                     ),
                   ),
                 ],
@@ -128,9 +126,7 @@ Widget expandedButton(
               vertical: 15,
             ),
           ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: context.pop,
         ),
       ),
     ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 gps_request(BuildContext context, String title, Widget content,
     VoidCallback confirmOnTap) {
@@ -6,7 +7,7 @@ gps_request(BuildContext context, String title, Widget content,
   Widget cancelButton = TextButton(
     child: Text("Cancelar"),
     onPressed: () {
-      Navigator.of(context).pop();
+      context.pop();
     },
   );
   Widget continueButton = TextButton(
@@ -14,7 +15,7 @@ gps_request(BuildContext context, String title, Widget content,
     onPressed: () {
       /* TODO onclickByArgument */
       confirmOnTap();
-      Navigator.of(context).pop();
+      context.pop();
     },
   );
   // set up the AlertDialog

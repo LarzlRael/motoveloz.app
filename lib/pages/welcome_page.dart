@@ -18,7 +18,7 @@ class WelcomePage extends StatelessWidget {
               child: Container(
                 height: 475,
                 child: Slideshow(
-                  primaryColor: colors.primary,
+                  primaryColor: Color(0xffFF8200),
                   secondaryColor: Colors.grey,
                   primaryBullet: 15.0,
                   secondaryBullet: 10.0,
@@ -46,6 +46,9 @@ class WelcomePage extends StatelessWidget {
               top: 50,
               right: 0,
               child: TextButton(
+                style: TextButton.styleFrom(
+                  foregroundColor: Color(0xffFF8200),
+                ),
                 child: Text('Saltar'),
                 onPressed: () {
                   goToNextPage(context);
@@ -65,10 +68,22 @@ class WelcomePage extends StatelessWidget {
                       from: 15,
                       delay: const Duration(milliseconds: 50),
                       child: FilledButton(
+                        style: FilledButton.styleFrom(
+                          backgroundColor: Color(0xffFF8200),
+                          foregroundColor: Colors.white,
+                        ),
                         onPressed: () {
                           goToNextPage(context);
                         },
-                        child: Text('Comenzar'),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Comenzar',
+                            style: TextStyle(
+                              fontSize: 17,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   )
@@ -80,7 +95,7 @@ class WelcomePage extends StatelessWidget {
   }
 
   void goToNextPage(BuildContext context) {
-    UserPreferences.isFirstTime = true;
-    Navigator.pushReplacementNamed(context, 'list_shops');
+    UserPreferences.isFirstTime = false;
+    context.go('/list_shops');
   }
 }

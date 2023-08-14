@@ -1,7 +1,7 @@
 part of 'services.dart';
 
-/* const _baseURL = 'http://192.168.0.106:4000/api'; */
-const _baseURL = 'https://motovelozapi-production.up.railway.app/api';
+const _baseURL = 'https://motoveloz.com/api';
+/* const _baseURL = 'https://motovelozapi-production.up.railway.app/api'; */
 
 enum RequestType {
   get,

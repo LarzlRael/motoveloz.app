@@ -13,7 +13,7 @@ class UserPreferences {
     _prefs.setBool('isDarkTheme', value);
   }
 
-  static bool get isFirstTime => _prefs.getBool('isFirstTime') ?? false;
+  static bool get isFirstTime => _prefs.getBool('isFirstTime') ?? true;
 
   static set isFirstTime(bool value) {
     _prefs.setBool('isFirstTime', value);

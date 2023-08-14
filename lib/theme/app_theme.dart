@@ -27,9 +27,10 @@ class AppTheme {
   ThemeData getTheme() => ThemeData(
         /* useMaterial3: true, */
         brightness: isDarkMode ? Brightness.dark : Brightness.light,
-        colorSchemeSeed: Color(0xFF8200),
-        appBarTheme: const AppBarTheme(
+        colorSchemeSeed: Color(0xffFF8200),
+        appBarTheme: AppBarTheme(
           centerTitle: false,
+          backgroundColor: isDarkMode ? Colors.transparent : Color(0xffFF8200),
         ),
       );
   AppTheme copyWith({

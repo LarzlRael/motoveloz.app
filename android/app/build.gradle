@@ -61,7 +61,7 @@ android {
         minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         //!important change this to your app version in every new build
-        versionCode 8
+        versionCode 9
         versionName flutterVersionName
         
     }

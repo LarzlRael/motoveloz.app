@@ -6,6 +6,7 @@ import 'package:WaraShops/services/services.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
@@ -29,3 +30,4 @@ part 'loading_page.dart';
 part 'inapp_web_page.dart';
 part 'action.dart';
 part 'welcome_page.dart';
+part 'initial_page.dart';

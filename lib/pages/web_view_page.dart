@@ -92,12 +92,15 @@ class _WebViewPageState extends State<WebViewPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text(widget.loadWeb.title.toTitleCase()),
+        title: Hero(
+          tag: widget.loadWeb.url,
+          child: Text(
+            widget.loadWeb.title.toTitleCase(),
+          ),
+        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: context.pop,
         ),
         actions: [
           Padding(
@@ -119,18 +122,6 @@ class _WebViewPageState extends State<WebViewPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    /*  Container(
-                    width: 200,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                          10.0), // Ajusta el valor de 10.0 según tus necesidades
-                    ),
-                    child: Image.asset(
-                      widget.loadWeb.title,
-                      fit: BoxFit.cover,
-                    ),
-                  ), */
                     ClipRRect(
                       borderRadius: BorderRadius.circular(16.0),
                       child: Hero(
@@ -194,7 +185,6 @@ class LoadingWithLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('progressLoading: $progressLoading');
     return Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

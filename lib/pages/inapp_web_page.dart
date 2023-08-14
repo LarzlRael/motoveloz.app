@@ -26,9 +26,7 @@ class _InappWebPageState extends State<InappWebPage> {
         title: Text(widget.loadWeb.title.toTitleCase()),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: context.pop,
         ),
         actions: [
           Padding(
@@ -96,7 +94,7 @@ class _InappWebPageState extends State<InappWebPage> {
                             url: Uri.parse(widget.loadWeb.url),
                           ),
                         ); */
-                        Navigator.pushReplacementNamed(context, 'loading_page');
+                        context.go('/loading_page');
                         String action = url.toString().split(':').first;
                         List<String> customActions = [
                           'tel',

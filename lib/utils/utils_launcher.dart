@@ -85,9 +85,5 @@ class LoadWeb {
  */
 
 void goUrlSelected(BuildContext context, LoadWeb loadWeb) {
-  Navigator.pushNamed(
-    context,
-    'web_view',
-    arguments: loadWeb,
-  );
+  context.push('/web_view', extra: loadWeb);
 }

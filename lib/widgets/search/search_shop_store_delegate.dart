@@ -42,16 +42,32 @@ class SearchShopStoreDelegate extends SearchDelegate {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SimpleText(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            text: query.isNotEmpty
-                ? 'Resultados de busqueda para "$query"'
-                : 'Mostrando todos los resultados'),
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          text: query.isNotEmpty
+              ? 'Resultados de busqueda para "$query"'
+              : 'Mostrando todos los resultados',
+        ),
         Expanded(
           child: StreamDataWidget<List<StoreModel>>(
             stream: resultBloc.resulStream,
-            builder: (data) => listViewSuggestResult(data),
+            builder: (data) => listViewSuggestResult(data, (selectedItem) {
+              historyBloc.saveHistory(HistoryModel(
+                storeName: selectedItem.storeName,
+                storeUrl: selectedItem.storeUrl,
+                storeImageUrl: selectedItem.imageUrl,
+              ));
+
+              goUrlSelected(
+                context,
+                LoadWeb(
+                  title: selectedItem.storeName,
+                  url: selectedItem.storeUrl,
+                  imageAsset: selectedItem.imageUrl,
+                ),
+              );
+            }),
             noResultsWidget: NoResults(
               icon: Icons.search_off,
               message: 'No hay resultados para "$query"',
@@ -80,7 +96,27 @@ class SearchShopStoreDelegate extends SearchDelegate {
           child: query.isEmpty
               ? StreamDataWidget<List<HistoryModel>>(
                   stream: historyBloc.historyStream,
-                  builder: (data) => listViewBlocHistory(data),
+                  builder: (data) => listViewBlocHistory(data, (historyItem) {
+                    showAlertDialog(
+                        context,
+                        "Eliminar de historial",
+                        SimpleText(
+                            text:
+                                "¿Desea eliminar ${historyItem.storeName.toTitleCase()} de su historial?"),
+                        () async {
+                      await historyBloc.deleteHistoryById(historyItem.id!);
+                      historyBloc.getAllHistory();
+                    });
+                  }, (historyItem) {
+                    goUrlSelected(
+                      context,
+                      LoadWeb(
+                        title: historyItem.storeName,
+                        url: historyItem.storeUrl,
+                        imageAsset: historyItem.storeImageUrl,
+                      ),
+                    );
+                  }),
                   noResultsWidget: NoResults(
                     icon: Icons.history,
                     message: 'No hay historial de busquedas',
@@ -91,7 +127,22 @@ class SearchShopStoreDelegate extends SearchDelegate {
               : StreamDataWidget<List<StoreModel>>(
                   initialData: searchProvider.getStores,
                   stream: resultBloc.resulStream,
-                  builder: (data) => listViewSuggestResult(data),
+                  builder: (data) => listViewSuggestResult(data, (selecteItem) {
+                    historyBloc.saveHistory(HistoryModel(
+                      storeName: selecteItem.storeName,
+                      storeUrl: selecteItem.storeUrl,
+                      storeImageUrl: selecteItem.imageUrl,
+                    ));
+
+                    goUrlSelected(
+                      context,
+                      LoadWeb(
+                        title: selecteItem.storeName,
+                        url: selecteItem.storeUrl,
+                        imageAsset: selecteItem.imageUrl,
+                      ),
+                    );
+                  }),
                   noResultsWidget: NoResults(
                     icon: Icons.history,
                     message: 'No hay historial de busquedas',
@@ -104,7 +155,11 @@ class SearchShopStoreDelegate extends SearchDelegate {
     );
   }
 
-  ListView listViewBlocHistory(List<HistoryModel> historyList) {
+  ListView listViewBlocHistory(
+    List<HistoryModel> historyList,
+    void Function(HistoryModel historyModel) onTapselectHistoryItem,
+    void Function(HistoryModel historyModel) onLongPressHistoryItem,
+  ) {
     return ListView.builder(
       itemCount: historyList.length,
       itemBuilder: (context, i) {
@@ -122,30 +177,21 @@ class SearchShopStoreDelegate extends SearchDelegate {
             ),
           ),
           title: Text(historyList[i].storeName.toTitleCase()),
-          onLongPress: () => showAlertDialog(
-              context,
-              "Eliminar de historial",
-              SimpleText(
-                  text:
-                      "¿Desea eliminar ${historyList[i].storeName.toTitleCase()} de su historial?"),
-              () async {
-            await historyBloc.deleteHistoryById(historyList[i].id!);
-            historyBloc.getAllHistory();
-          }),
-          onTap: () => goUrlSelected(
-            context,
-            LoadWeb(
-              title: historyList[i].storeName,
-              url: historyList[i].storeUrl,
-              imageAsset: historyList[i].storeImageUrl,
-            ),
-          ),
+          onLongPress: () {
+            onLongPressHistoryItem(historyList[i]);
+          },
+          onTap: () {
+            onTapselectHistoryItem(historyList[i]);
+          },
         );
       },
     );
   }
 
-  ListView listViewSuggestResult(List<StoreModel> suggestionList) {
+  ListView listViewSuggestResult(
+    List<StoreModel> suggestionList,
+    void Function(StoreModel storeModel) selectStore,
+  ) {
     final double sizeImage = 40;
     return ListView.builder(
       itemCount: suggestionList.length,
@@ -164,7 +210,7 @@ class SearchShopStoreDelegate extends SearchDelegate {
           ),
           title: Text(suggestionList[i].storeName.toTitleCase()),
           onTap: () {
-            historyBloc.saveHistory(HistoryModel(
+            /* historyBloc.saveHistory(HistoryModel(
               storeName: suggestionList[i].storeName,
               storeUrl: suggestionList[i].storeUrl,
               storeImageUrl: suggestionList[i].imageUrl,
@@ -177,7 +223,8 @@ class SearchShopStoreDelegate extends SearchDelegate {
                 url: suggestionList[i].storeUrl,
                 imageAsset: suggestionList[i].imageUrl,
               ),
-            );
+            ); */
+            selectStore(suggestionList[i]);
           },
         );
       },

@@ -23,7 +23,7 @@ class _AccesoGpsPageState extends State<AccesoGpsPage>
   didChangeAppLifecycleState(AppLifecycleState state) async {
     if (state == AppLifecycleState.resumed) {
       if (await Permission.location.isGranted) {
-        Navigator.pushReplacementNamed(context, 'loading_page');
+        context.go('/loading_page');
       }
     }
   }
@@ -59,7 +59,7 @@ class _AccesoGpsPageState extends State<AccesoGpsPage>
   void accespGps(PermissionStatus status) {
     switch (status) {
       case PermissionStatus.granted:
-        Navigator.pushReplacementNamed(context, 'loading_page');
+        context.go('/loading_page');
         break;
       case PermissionStatus.denied:
       case PermissionStatus.restricted:
