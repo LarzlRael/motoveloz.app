@@ -8,11 +8,15 @@ import 'package:WaraShops/routes/routes.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 
+import 'env/enviroments.dart';
+
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   /* FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding); */
   await PushNotificationService.initializeApp();
   await UserPreferences.init();
+  await Environment.initEnviroment();
+
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeProviderNotifier(),
