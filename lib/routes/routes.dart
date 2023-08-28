@@ -21,7 +21,7 @@ import '../widgets/widgets.dart';
 }; */
 
 final appRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/list_shops',
   /* refreshListenable: goRouterNotifier, */
   routes: [
     ///* Primera pantalla
