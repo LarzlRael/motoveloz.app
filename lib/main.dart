@@ -1,11 +1,9 @@
 import 'package:WaraShops/data/constants.dart';
 import 'package:WaraShops/provider/providers.dart';
 import 'package:WaraShops/services/services.dart';
-import 'package:WaraShops/theme/app_theme.dart';
 import 'package:WaraShops/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:WaraShops/routes/routes.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 
 import 'env/enviroments.dart';

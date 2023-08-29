@@ -120,6 +120,10 @@ Widget expandedButton(
             backgroundColor: colorButton,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
+              side: BorderSide(
+                color: colorButton,
+                width: 1,
+              ),
             ),
             padding: EdgeInsets.symmetric(
               horizontal: 75,

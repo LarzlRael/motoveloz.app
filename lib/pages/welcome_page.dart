@@ -5,7 +5,6 @@ class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
     final themeProvider = context.watch<ThemeProviderNotifier>();
     return Scaffold(
       body: Container(

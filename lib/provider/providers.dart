@@ -1,4 +1,3 @@
-import 'package:WaraShops/data/theme_colors.dart';
 import 'package:WaraShops/utils/utils.dart';
 import 'package:flutter/material.dart';
 

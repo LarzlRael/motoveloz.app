@@ -1,10 +1,6 @@
 import 'package:WaraShops/widgets/widgets.dart';
-import 'package:WaraShops/data/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-
-import '../provider/providers.dart';
 import '../utils/utils.dart';
 
 showAlertDialog(
